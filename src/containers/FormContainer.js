@@ -4,9 +4,15 @@ export default class formContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            cwl: '',
-            firstName: '',
-            lastName: '',
+            email: '',
+        }
+    }
+
+    handleEmailVerify(event) {
+        if (this.state.email !== '') {
+            if (this.state.email !== event.target.value) {
+                console.log("hi")
+            }
         }
     }
 
@@ -22,35 +28,35 @@ export default class formContainer extends Component {
                 <div className="form">
                     <form onSubmit={this.handleSubmit}>
                         <div>
-                            <label for="First Name">First Name: </label>
+                            <label>First Name: </label>
                             <input type="text" id="firstName" />
                         </div>
                         <div>
-                            <label for="Last Name">Last Name:</label>
+                            <label>Last Name:</label>
                             <input type="text" id="lastName" />
                         </div>
                         <div>
-                            <label for="UBC Student Number">UBC Student Number:</label>
+                            <label>UBC Student Number:</label>
                             <input type="number" id="UBC_SN" />
                         </div>
                         <div>
-                            <label for="Email">Email Address:</label>
-                            <input type="email" id="email1" />
+                            <label>Email Address:</label>
+                            <input type="email" id="email1" value={this.state.value} />
                         </div>
                         <div>
-                            <label for="Email">Verify Email Address:</label>
-                            <input type="email" id="email2" />
+                            <label>Verify Email Address:</label>
+                            <input type="email" id="email2" value={this.state.value} onChange={this.handleEmailVerify} />
                         </div>
                         <div>
-                            <label for="Phone Number">Phone Number:</label>
+                            <label>Phone Number:</label>
                             <input type="number" id="phone" />
                         </div>
                         <div>
-                            <label for="Number of Applications">Is this your first application to the UBC Dietetics Major?:</label>
+                            <label>Is this your first application to the UBC Dietetics Major?:</label>
                             <fieldset id="NumOfApps">
-                                <input type="radio" name="AppNum" value="yes" checked /> Yes
-                                <input type="radio" name="AppNum" value="no" /> No, second
-                                <input type="radio" name="AppNum" value="other" /> Other (permission note is attached)
+                                <input type="radio" name="appNum" value="yes" checked /> Yes
+                                <input type="radio" name="appNum" value="no" /> No, second
+                                <input type="radio" name="appNum" value="other" /> Other (permission note is attached)
                             </fieldset>
                         </div>
                         <div>
