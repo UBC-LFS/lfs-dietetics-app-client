@@ -15,23 +15,29 @@ export default class formContainer extends Component {
     }
 
     setEmail(event) {
-        this.setState({email: event.target.value})
+        this.setState({ email: event.target.value }, this.validateEmail)
     }
 
     handleVerifyEmail(event) {
-        this.setState({verifyEmail: event.target.value}, this.validateEmail)
+        this.setState({ verifyEmail: event.target.value }, this.validateEmail)
     }
 
     validateEmail() {
-        if (this.state.email !== this.state.verifyEmail) {
-            var html = '<font color="red"> please verify your email </font>';
-            document.getElementById("verifyEmail").innerHTML = html;
+        if (this.state.email !== '' && this.state.verifyEmail !== '') {
+            if (this.state.email !== this.state.verifyEmail) {
+                let html = '<font color="red"> Email address does not match  </font>';
+                document.getElementById("verifyEmail").innerHTML = html;
+            } else {
+                document.getElementById("verifyEmail").innerHTML = '';
+            }
+        } else {
+            document.getElementById("verifyEmail").innerHTML = '';
         }
     }
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log(event)
+        console.log(this.state.firstName)
     }
 
     render() {
@@ -42,7 +48,7 @@ export default class formContainer extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div>
                             <label>First Name: </label>
-                            <input type="text" id="firstName" />
+                            <input type="text" id="firstName" value={this.state.firstName}/>
                         </div>
                         <div>
                             <label>Last Name:</label>
@@ -105,7 +111,7 @@ export default class formContainer extends Component {
                             </div>
                         </div>
                         <div>
-                            <input type="submit" value="Submit" />
+                            <input class="btn" type="submit" value="Submit" />
                         </div>
                     </form>
                 </div>
