@@ -5,14 +5,27 @@ export default class formContainer extends Component {
         super(props)
         this.state = {
             email: '',
+            verifyEmail: '',
         }
+
+        this.setEmail = this.setEmail.bind(this);
+        this.handleVerifyEmail = this.handleVerifyEmail.bind(this);
+        this.validateEmail = this.validateEmail.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleEmailVerify(event) {
-        if (this.state.email !== '') {
-            if (this.state.email !== event.target.value) {
-                console.log("hi")
-            }
+    setEmail(event) {
+        this.setState({email: event.target.value})
+    }
+
+    handleVerifyEmail(event) {
+        this.setState({verifyEmail: event.target.value}, this.validateEmail)
+    }
+
+    validateEmail() {
+        if (this.state.email !== this.state.verifyEmail) {
+            var html = '<font color="red"> please verify your email </font>';
+            document.getElementById("verifyEmail").innerHTML = html;
         }
     }
 
@@ -41,11 +54,12 @@ export default class formContainer extends Component {
                         </div>
                         <div>
                             <label>Email Address:</label>
-                            <input type="email" id="email1" value={this.state.value} />
+                            <input type="email" id="email1" value={this.state.email} onChange={this.setEmail} />
                         </div>
                         <div>
                             <label>Verify Email Address:</label>
-                            <input type="email" id="email2" value={this.state.value} onChange={this.handleEmailVerify} />
+                            <input type="email" id="email2" value={this.state.verifyEmail} onChange={this.handleVerifyEmail} />
+                            <div id='verifyEmail'> </div>
                         </div>
                         <div>
                             <label>Phone Number:</label>
