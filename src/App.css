@@ -1,5 +1,16 @@
 .App {
-  text-align: center;
+
+}
+
+label {
+  display: inline-block;
+}
+
+.form {
+  width: auto;
+  border: 2px;
+  padding: 25px;
+  margin: 25px;
 }
 
 .App-logo {
@@ -21,4 +32,17 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.box {
+  width: auto;
+  border: 2px solid black;
+  padding: 25px;
+  
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

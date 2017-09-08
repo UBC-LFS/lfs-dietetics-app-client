@@ -17,41 +17,79 @@ export default class formContainer extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    First Name:
-                        <input type="text" />
-                </label>
-                <label>
-                    Last Name:
-                        <input type="text" />
-                </label>
-                <label>
-                    UBC Student Number:
-                        <input type="text" />
-                </label>
-                <label>
-                    Email Address:
-                        <input type="text" />
-                </label>
-                <label>
-                    Phone Number:
-                        <input type="text" />
-                </label>
-                <label>
-                    Is this your first application to the UBC Dietetics Major?:
-                        <input type="radio" name="gender" value="male" checked /> Yes
-                        <input type="radio" name="gender" value="female" /> No, second
-                        <input type="radio" name="gender" value="other" /> Other (permission note is attached)
-                </label>
-                <label>
-                    Note: Students are only permitted to apply to the program two times, unless written permission is given via
-                    the 2018 Dietetics Admissions Special Permission Form (due November 15, 2016). If permission to re-apply has
-                    been granted, please include a copy of the signed form with your application).
-                </label>
-
-                <input type="submit" value="Submit" />
-            </form>
+            <div>
+                <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2018 </h1>
+                <div className="form">
+                    <form onSubmit={this.handleSubmit}>
+                        <div>
+                            <label for="First Name">First Name: </label>
+                            <input type="text" id="firstName" />
+                        </div>
+                        <div>
+                            <label for="Last Name">Last Name:</label>
+                            <input type="text" id="lastName" />
+                        </div>
+                        <div>
+                            <label for="UBC Student Number">UBC Student Number:</label>
+                            <input type="number" id="UBC_SN" />
+                        </div>
+                        <div>
+                            <label for="Email">Email Address:</label>
+                            <input type="email" id="email1" />
+                        </div>
+                        <div>
+                            <label for="Email">Verify Email Address:</label>
+                            <input type="email" id="email2" />
+                        </div>
+                        <div>
+                            <label for="Phone Number">Phone Number:</label>
+                            <input type="number" id="phone" />
+                        </div>
+                        <div>
+                            <label for="Number of Applications">Is this your first application to the UBC Dietetics Major?:</label>
+                            <fieldset id="NumOfApps">
+                                <input type="radio" name="AppNum" value="yes" checked /> Yes
+                                <input type="radio" name="AppNum" value="no" /> No, second
+                                <input type="radio" name="AppNum" value="other" /> Other (permission note is attached)
+                            </fieldset>
+                        </div>
+                        <div>
+                            <p><b>Note:</b> Students are only permitted to apply to the program two times, unless written permission is given via
+                                the 2018 Dietetics Admissions Special Permission Form (due <b>November 15, 2016</b>). If permission to re-apply has
+                                been granted, please include a copy of the signed form with your application).</p>
+                        </div>
+                        <div className="box">
+                            <p><b>Aboriginal Student Self-Identification - Optional Question</b> </p>
+                            <p> UBC is dedicated to supporting Aboriginal student success. The university has developed a wide variety of programs
+                                    and student serives for Aboriginal students, including academic programs, admission policies, housing and financial
+                                    awards. <b>Self-identification is optional</b>. If you are an Aboiginal person, we encourage you to self-identify
+                                    so that you may benefit from these programs and services. </p>
+                            <p> We use the term "Aboriginal" in the spirit of its use in section 35(2) of the Canadian Constitution, to refer inclusively to members of First Nations,
+                                    status and non-status, treaty and non-treaty Indians, Métis, and Inuit peoples in Canada, recognizing in doing so that many people may perfer
+                                    the terms that are specific and traditional to their communities. </p>
+                            <p><b> Aboriginal Self-Identification Questions (Optional):</b> </p>
+                            <div>
+                                <label>Do you identify yourself as an Aboriginal person of Canada?</label>
+                                <fieldset id="aboriginal">
+                                    <input type="radio" name="abor" value="yes" checked /> Yes
+                                    <input type="radio" name="abor" value="no" /> No
+                                </fieldset>
+                            </div>
+                            <div>
+                                <label>Do you identify with one or more of the following:</label>
+                                <fieldset id="aborId">
+                                    <input type="radio" name="idAbor" value="firstNation" checked /> First Nations
+                                    <input type="radio" name="idAbor" value="Metis" /> Métis
+                                    <input type="radio" name="idAbor" value="Inuit" /> Inuit
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
         );
     }
 }
