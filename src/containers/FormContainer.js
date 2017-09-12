@@ -40,6 +40,13 @@ export default class formContainer extends Component {
         console.log(this.state.firstName)
     }
 
+    componentDidMount() {
+        fetch('http://localhost:8080/')
+            .then(response => response.json())
+            .then(x => console.log(x))
+            
+    }
+
     render() {
         return (
             <div>
