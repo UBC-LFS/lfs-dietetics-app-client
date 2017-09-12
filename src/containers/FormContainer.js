@@ -3,7 +3,28 @@ import React, { Component } from 'react';
 export default class formContainer extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            firstName: '',
+            lastName: '',
+            ubcSN: '',
+            email: '',
+            verifyEmail: '',
+            phone: '',
+            numOfApp: '',
+            aboriginal: '',
+            aborId: '',
+        }
+
+        this.setFirstName = this.setFirstName.bind(this);
+        this.setLastName = this.setLastName.bind(this);
+        this.setUbcSN = this.setUbcSN.bind(this);
+        this.setEmail = this.setEmail.bind(this);
+        this.setVerifyEmail = this.setVerifyEmail.bind(this);
+        this.setPhone = this.setPhone.bind(this);
+        this.setApp = this.setApp.bind(this);
+        this.setAboriginal = this.setAboriginal.bind(this);
+        this.setAborId = this.setAborId.bind(this);
+
         this.validateEmail = this.validateEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -77,35 +98,35 @@ export default class formContainer extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div>
                             <label>First Name:&nbsp;</label>
-                            <input type="text" id="firstName" value={this.state.firstName} onChange={this.setFirstName.bind(this)} />
+                            <input type="text" id="firstName" value={this.state.firstName} onChange={this.setFirstName} />
                         </div>
                         <div>
                             <label>Last Name:&nbsp;</label>
-                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.setLastName.bind(this)} />
+                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.setLastName} />
                         </div>
                         <div>
                             <label>UBC Student Number:&nbsp;</label>
-                            <input type="number" id="ubcSN" value={this.state.ubcSN} onChange={this.setUbcSN.bind(this)} />
+                            <input type="number" id="ubcSN" value={this.state.ubcSN} onChange={this.setUbcSN} />
                         </div>
                         <div>
                             <label>Email Address:&nbsp;</label>
-                            <input type="email" id="email" value={this.state.email} onChange={this.setEmail.bind(this)} />
+                            <input type="email" id="email" value={this.state.email} onChange={this.setEmail} />
                         </div>
                         <div>
                             <label>Verify Email Address:&nbsp;</label>
-                            <input type="email" id="verifyEmail" value={this.state.verifyEmail} onChange={this.setVerifyEmail.bind(this)} />
+                            <input type="email" id="verifyEmail" value={this.state.verifyEmail} onChange={this.setVerifyEmail} />
                             <div id='verifyEmail'> </div>
                         </div>
                         <div>
                             <label>Phone Number:&nbsp;</label>
-                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone.bind(this)} />
+                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} />
                         </div>
                         <div>
                             <label>Is this your first application to the UBC Dietetics Major?:</label>
                             <fieldset id="NumOfApps">
-                                <input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setApp.bind(this)} /> &nbsp; Yes &nbsp;&nbsp;
-                                <input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setApp.bind(this)} /> &nbsp; No, second &nbsp;&nbsp;
-                                <input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setApp.bind(this)} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;
+                                <input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setApp} /> &nbsp; Yes &nbsp;&nbsp;
+                                <input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setApp} /> &nbsp; No, second &nbsp;&nbsp;
+                                <input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;
                             </fieldset>
                             <br />
                         </div>
@@ -127,16 +148,16 @@ export default class formContainer extends Component {
                             <div>
                                 <label>Do you identify yourself as an Aboriginal person of Canada?</label>
                                 <fieldset id="aboriginal">
-                                    <input type="radio" name="abor" value="yes" checked={this.state.aboriginal === 'yes'} onChange={this.setAboriginal.bind(this)} /> &nbsp; Yes &nbsp;&nbsp;
-                                    <input type="radio" name="abor" value="no" checked={this.state.aboriginal === 'no'} onChange={this.setAboriginal.bind(this)} /> &nbsp; No &nbsp;&nbsp;
+                                    <input type="radio" name="abor" value="yes" checked={this.state.aboriginal === 'yes'} onChange={this.setAboriginal} /> &nbsp; Yes &nbsp;&nbsp;
+                                    <input type="radio" name="abor" value="no" checked={this.state.aboriginal === 'no'} onChange={this.setAboriginal} /> &nbsp; No &nbsp;&nbsp;
                                 </fieldset>
                             </div>
                             <div>
                                 <label>Do you identify with one or more of the following:</label>
                                 <fieldset id="aborId">
-                                    <input type="radio" name="idAbor" value="First Nation" checked={this.state.aborId === 'First Nation'} onChange={this.setAborId.bind(this)} /> &nbsp; First Nations &nbsp;&nbsp;
-                                    <input type="radio" name="idAbor" value="Métis" checked={this.state.aborId === 'Métis'} onChange={this.setAborId.bind(this)} /> &nbsp; Métis &nbsp;&nbsp;
-                                    <input type="radio" name="idAbor" value="Inuit" checked={this.state.aborId === 'Inuit'} onChange={this.setAborId.bind(this)} /> &nbsp; Inuit &nbsp;&nbsp;
+                                    <input type="radio" name="idAbor" value="First Nation" checked={this.state.aborId === 'First Nation'} onChange={this.setAborId} /> &nbsp; First Nations &nbsp;&nbsp;
+                                    <input type="radio" name="idAbor" value="Métis" checked={this.state.aborId === 'Métis'} onChange={this.setAborId} /> &nbsp; Métis &nbsp;&nbsp;
+                                    <input type="radio" name="idAbor" value="Inuit" checked={this.state.aborId === 'Inuit'} onChange={this.setAborId} /> &nbsp; Inuit &nbsp;&nbsp;
                                 </fieldset>
                             </div>
                         </div>
