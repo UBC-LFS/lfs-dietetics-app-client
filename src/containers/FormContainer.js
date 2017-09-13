@@ -83,10 +83,14 @@ export default class formContainer extends Component {
 
         var data = new FormData();
         data.append( "json", JSON.stringify( this.state ) );
-
+        
         fetch('http://localhost:8080/check', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: "POST",
-            body: data
+            body: JSON.stringify({a: 1, b: 2})
         })
            
     }
