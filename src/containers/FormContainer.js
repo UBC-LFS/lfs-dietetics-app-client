@@ -6,7 +6,7 @@ export default class formContainer extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            ubcSN: '',
+            id: '',
             email: '',
             verifyEmail: '',
             phone: '',
@@ -17,13 +17,14 @@ export default class formContainer extends Component {
 
         this.setFirstName = this.setFirstName.bind(this);
         this.setLastName = this.setLastName.bind(this);
-        this.setUbcSN = this.setUbcSN.bind(this);
+        this.setid = this.setid.bind(this);
         this.setEmail = this.setEmail.bind(this);
         this.setVerifyEmail = this.setVerifyEmail.bind(this);
         this.setPhone = this.setPhone.bind(this);
         this.setApp = this.setApp.bind(this);
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
+
 
         this.validateEmail = this.validateEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,8 +38,8 @@ export default class formContainer extends Component {
         this.setState({ lastName: event.target.value })
     }
 
-    setUbcSN(event) {
-        this.setState({ ubcSN: event.target.value })
+    setid(event) {
+        this.setState({ id: event.target.value })
     }
 
     setEmail(event) {
@@ -78,9 +79,16 @@ export default class formContainer extends Component {
         }
     }
 
-    handleSubmit(event) {
-        event.preventDefault()
-        console.log(this.state)
+      handleSubmit(event) {
+
+        var data = new FormData();
+        data.append( "json", JSON.stringify( this.state ) );
+
+        fetch('http://localhost:8080/check', {
+            method: "POST",
+            body: data
+        })
+           
     }
 
     componentDidMount() {
@@ -106,7 +114,7 @@ export default class formContainer extends Component {
                         </div>
                         <div>
                             <label>UBC Student Number:&nbsp;</label>
-                            <input type="number" id="ubcSN" value={this.state.ubcSN} onChange={this.setUbcSN} />
+                            <input type="number" id="id" value={this.state.id} onChange={this.setid} />
                         </div>
                         <div>
                             <label>Email Address:&nbsp;</label>
