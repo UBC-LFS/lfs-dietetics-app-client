@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PinGenerator from '../components/PinGenerator';
+import Pin from '../components/Pin';
 
-export default class formContainer extends Component {
+export default class FormContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -103,11 +103,10 @@ export default class formContainer extends Component {
     render() {
         return (
             <div>
-                 <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2018 </h1>
                 {this.state.home === true ? (
-                    <PinGenerator />
+                    <Pin />
                 ) : (
-                        
+
                         <div className="form">
                             <form onSubmit={this.handleSubmit}>
                                 <div>
@@ -181,8 +180,8 @@ export default class formContainer extends Component {
                                 </div>
                             </form>
                         </div>
-                        )
-            }
+                    )
+                }
             </div>
         );
     }
