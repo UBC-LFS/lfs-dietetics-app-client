@@ -22,8 +22,25 @@ export default class AppContainer extends Component {
             body: JSON.stringify({ firstName: 'Patrick', lastName: 'Lin', id: 12345678 })
         })
             .then(response => response.json())
-            .then(json => this.setState({ filledForm: json.filledForm }))
+            .then(json => this.setState({ filledForm: false }))
 
+        //json.filledForm
+    }
+
+    handleSubmit(state) {
+        return event => {
+            event.preventDefault()
+            fetch('http://localhost:8080/api/form', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(state)
+            })
+                .then(response => response.json())
+                .then(json => this.setState({ filledForm: json.filledForm }))
+        }
     }
 
     render() {
@@ -33,7 +50,7 @@ export default class AppContainer extends Component {
 
                 {
                     this.state.filledForm === true ?
-                        <Pin /> : <Form />
+                        <Pin /> : <Form handleSubmit={this.handleSubmit.bind(this)} />
                 }
             </div>
         )
