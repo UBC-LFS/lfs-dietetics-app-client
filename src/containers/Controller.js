@@ -22,9 +22,8 @@ export default class AppContainer extends Component {
             body: JSON.stringify({ firstName: 'Patrick', lastName: 'Lin', id: 12345678 })
         })
             .then(response => response.json())
+            //change back to - json.filledForm
             .then(json => this.setState({ filledForm: false }))
-
-        //json.filledForm
     }
 
     handleSubmit(state) {
@@ -47,10 +46,12 @@ export default class AppContainer extends Component {
         return (
             <div>
                 <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2018 </h1>
-
                 {
-                    this.state.filledForm === true ?
-                        <Pin /> : <Form handleSubmit={this.handleSubmit.bind(this)} />
+                    this.state.filledForm === true ? (
+                        <Pin />
+                    ) : (
+                        <Form handleSubmit={this.handleSubmit.bind(this)} />
+                        )
                 }
             </div>
         )
