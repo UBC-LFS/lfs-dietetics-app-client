@@ -25,3 +25,16 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+.pin-result {
+  width: auto;
+  border: 1px solid #ccc;
+  height: 50px;
+  display:block;
+}
+
+.input-xlarge {
+  width: 100%;
+  font-size: 150% !important;
+  padding-left: 15px;
+}

@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const PinGenerator = (props) => {
+export default class Pin extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+        }
+    }
 
-    function generateid() {
-        let pin = ("18-" + Math.floor(Math.random() * 90000));
-        fetch('http://localhost:8080/check', {
+    componentDidMount() {
+        fetch('http://localhost:8080/api/get-pin')
+            .then(response => response.json())
+            .then(x => console.log(x))
+    }
+
+   /*  generateid() {
+        fetch('http://localhost:8080/api/check-pin', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -14,16 +24,24 @@ const PinGenerator = (props) => {
         }).then(() => {
             document.getElementById("pin").innerHTML = pin;
         })
+    } */
+
+    render() {
+        return (
+            <div>
+                <h1> Your Pin is </h1>
+    
+                <p>Click the button to display a random number.</p>
+    
+                <form>
+                    <div>
+                        <input className="btn" type="submit" value="Generate PIN" />
+                        <input type="text" id='pin' />
+                    </div>
+                </form>
+    
+                <p id="pin"></p>
+            </div>
+        )
     }
-
-    return (
-        <div>
-            <p>Click the button to display a random number.</p>
-
-            <button onClick={generateid}>Generate</button>
-            <p id="pin"></p>
-        </div>
-    );
 };
-
-export default PinGenerator;

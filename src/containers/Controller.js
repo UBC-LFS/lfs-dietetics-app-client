@@ -12,7 +12,6 @@ export default class AppContainer extends Component {
 
     componentWillMount() {
         //get name / id from shib 
-
         fetch('http://localhost:8080/api/user', {
             headers: {
                 'Accept': 'application/json',
@@ -23,7 +22,7 @@ export default class AppContainer extends Component {
         })
             .then(response => response.json())
             //change back to - json.filledForm
-            .then(json => this.setState({ filledForm: false }))
+            .then(json => this.setState(json.filledForm))
     }
 
     handleSubmit(state) {
