@@ -4,7 +4,6 @@ export default class FormContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            home: false,
             firstName: '',
             lastName: '',
             id: '',
@@ -14,21 +13,23 @@ export default class FormContainer extends Component {
             numOfApp: '',
             aboriginal: '',
             aborId: '',
+            date: '',
         }
-
         this.setFirstName = this.setFirstName.bind(this);
         this.setLastName = this.setLastName.bind(this);
         this.setid = this.setid.bind(this);
         this.setEmail = this.setEmail.bind(this);
         this.setVerifyEmail = this.setVerifyEmail.bind(this);
         this.setPhone = this.setPhone.bind(this);
-        this.setApp = this.setApp.bind(this);
+        this.setNumOfApp = this.setNumOfApp.bind(this);
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
 
+        //this.validateEmail = this.validateEmail.bind(this);
+    }
 
-        this.validateEmail = this.validateEmail.bind(this);
-        
+    componentWillMount() {
+        this.setState({ date: new Date().toJSON().slice(0,10).toString() })
     }
 
     setFirstName(event) {
@@ -55,7 +56,7 @@ export default class FormContainer extends Component {
         this.setState({ phone: event.target.value })
     }
 
-    setApp(event) {
+    setNumOfApp(event) {
         this.setState({ numOfApp: event.target.value })
     }
 
@@ -67,7 +68,7 @@ export default class FormContainer extends Component {
         this.setState({ aborId: event.target.value })
     }
 
-    validateEmail() {
+    /* validateEmail() {
         if (this.state.email !== '' && this.state.verifyEmail !== '') {
             if (this.state.email !== this.state.verifyEmail) {
                 let html = '<font color="red"> Email address does not match  </font>';
@@ -78,18 +79,10 @@ export default class FormContainer extends Component {
         } else {
             document.getElementById("verifyEmail").innerHTML = '';
         }
-    }
-
-    
-
-    componentDidMount() {
-        //fetch('http://localhost:8080/')
-        //.then(response => response.json(s))
-        //.then(x => console.log(x))
-
-    }
+    } */
 
     render() {
+        console.log(this.state.date)
         return (
             <div>
                 <div className="form">
@@ -159,8 +152,8 @@ export default class FormContainer extends Component {
                                 </fieldset>
                             </div>
                         </div>
-                        <div>
-                            <br />
+                        <div style={{ textAlign: 'center' }}>
+                            <br /><br />
                             <input className="btn" type="submit" value="Submit" />
                         </div>
                     </form>

@@ -1,34 +1,29 @@
 import React, { Component } from 'react';
-import Pin from '../components/Pin';
+import AppNumber from '../components/AppNumber';
 import Form from '../components/Form';
 
 export default class AppContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            filledForm: true,
+            filledForm: false,
+            applicationNumber: '',
         }
     }
 
     componentWillMount() {
-        //get name / id from shib 
-        fetch('http://localhost:8080/api/user', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({ firstName: 'Patrick', lastName: 'Lin', id: 12345678 })
-        })
+        fetch('/api/login')
             .then(response => response.json())
-            //change back to - json.filledForm
-            .then(json => this.setState(json.filledForm))
+            .then(json => this.setState({
+                filledForm: json.filledForm,
+                applicationNumber: json.ApplicationNumber.toString()
+            }))
     }
 
     handleSubmit(state) {
         return event => {
             event.preventDefault()
-            fetch('http://localhost:8080/api/form', {
+            fetch('/api/form', {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -43,14 +38,13 @@ export default class AppContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className='app-container'>
                 <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2018 </h1>
-                {
-                    this.state.filledForm === true ? (
-                        <Pin />
-                    ) : (
+                {this.state.filledForm === true ? (
+                    <AppNumber applicationNumber={this.state.applicationNumber} />
+                ) : (
                         <Form handleSubmit={this.handleSubmit.bind(this)} />
-                        )
+                    )
                 }
             </div>
         )
