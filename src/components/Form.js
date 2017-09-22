@@ -14,6 +14,7 @@ export default class FormContainer extends Component {
             aboriginal: '',
             aborId: '',
             date: '',
+            files: null
         }
         this.setFirstName = this.setFirstName.bind(this);
         this.setLastName = this.setLastName.bind(this);
@@ -24,6 +25,8 @@ export default class FormContainer extends Component {
         this.setNumOfApp = this.setNumOfApp.bind(this);
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
+        this.uploadFile = this.uploadFile.bind(this);
+        this.handleFileSelect = this.handleFileSelect.bind(this);
 
         //this.validateEmail = this.validateEmail.bind(this);
     }
@@ -68,18 +71,16 @@ export default class FormContainer extends Component {
         this.setState({ aborId: event.target.value })
     }
 
-    /* validateEmail() {
-        if (this.state.email !== '' && this.state.verifyEmail !== '') {
-            if (this.state.email !== this.state.verifyEmail) {
-                let html = '<font color="red"> Email address does not match  </font>';
-                document.getElementById("verifyEmail").innerHTML = html;
-            } else {
-                document.getElementById("verifyEmail").innerHTML = '';
-            }
-        } else {
-            document.getElementById("verifyEmail").innerHTML = '';
-        }
-    } */
+    handleFileSelect(event) {
+        this.setState({
+            files: event.target.value
+        })
+    }
+
+    uploadFile(event) {
+        const file = this.state.files
+        console.log(file)
+    }
 
     render() {
         return (
@@ -114,10 +115,17 @@ export default class FormContainer extends Component {
                         <div>
                             <label>Is this your first application to the UBC Dietetics Major?:</label>
                             <fieldset id="NumOfApps">
-                                <input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setNumOfApp} /> &nbsp; Yes &nbsp;&nbsp;
-                                <input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setNumOfApp} /> &nbsp; No, second &nbsp;&nbsp;
-                                <input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;
+                                <label><input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setNumOfApp} /> &nbsp; Yes &nbsp;&nbsp;</label>
+                                <label><input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setNumOfApp} /> &nbsp; No, second &nbsp;&nbsp;</label>
+                                <label><input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;</label>
                             </fieldset>
+                            <div>   
+                                { this.state.numOfApp === 'other' ?  <form onSubmit={this.props.handleFileUpload(this.state)}>
+                                                                        <input type="file" name="file" ref="file" onChange={this.handleFileSelect}/><br /> 
+                                                                        <input type="submit" />
+                                                                    </form> 
+                                                                : null}
+                            </div>
                             <br />
                         </div>
                         <div>

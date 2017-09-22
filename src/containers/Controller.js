@@ -45,6 +45,21 @@ export default class AppContainer extends Component {
         }
     }
 
+    handleFileUpload(state) {
+        return event => {
+            event.preventDefault()
+            fetch('http://localhost:8080/api/form', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                method: "POST",
+                body: state
+            }).then(response => response.json())
+              .then(x => console.log(x))
+        }
+    }
+
     render() {
         return (
             <div className='app-container'>
@@ -52,7 +67,7 @@ export default class AppContainer extends Component {
                 {this.state.filledForm === true ? (
                     <AppNumber applicationNumber={this.state.applicationNumber} />
                 ) : (
-                        <Form handleSubmit={this.handleSubmit.bind(this)} />
+                        <Form handleSubmit={this.handleSubmit.bind(this)} handleFileUpload={this.handleFileUpload.bind(this)}/>
                     )
                 }
             </div>
