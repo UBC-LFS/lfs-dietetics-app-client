@@ -9,6 +9,7 @@ export default class AppContainer extends Component {
             filledForm: false,
             applicationNumber: '',
         }
+        this.checkApp = this.checkApp.bind(this);
     }
 
     componentWillMount() {
@@ -18,6 +19,15 @@ export default class AppContainer extends Component {
                 filledForm: json.filledForm,
                 applicationNumber: json.ApplicationNumber.toString()
             }))
+    }
+
+    checkApp() {
+        fetch('/api/login')
+        .then(response => response.json())
+        .then(json => this.setState({
+            filledForm: json.filledForm,
+            applicationNumber: json.ApplicationNumber.toString()
+        }), this.forceUpdate())
     }
 
     handleSubmit(state) {
@@ -32,7 +42,7 @@ export default class AppContainer extends Component {
                 body: JSON.stringify(state)
             })
                 .then(response => response.json())
-                .then(json => this.setState({ filledForm: json.filledForm }))
+                .then(json => this.setState({ filledForm: json.filledForm }, this.checkApp))
         }
     }
 

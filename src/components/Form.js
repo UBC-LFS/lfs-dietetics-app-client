@@ -82,7 +82,6 @@ export default class FormContainer extends Component {
     } */
 
     render() {
-        console.log(this.state.date)
         return (
             <div>
                 <div className="form">
