@@ -17,7 +17,6 @@ export default class AppContainer extends Component {
     }
 
     findApplicant() {
-        console.log(process.env.npm_package_config_dev)
         fetch('api/login')
             .then(response => response.json())
             .then(json => this.setState({
@@ -30,7 +29,7 @@ export default class AppContainer extends Component {
         return event => {
             event.preventDefault()
             if (state.email === state.verifyEmail) {
-                fetch( process.env.url + 'api/form', {
+                fetch('api/form', {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
@@ -40,6 +39,7 @@ export default class AppContainer extends Component {
                 })
                     .then(response => response.json())
                     .then(json => {
+                        console.log(json.filledForm)
                         if (json.filledForm) {
                             this.setState({ filledForm: json.filledForm }, this.findApplicant())
                         }
