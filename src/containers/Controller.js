@@ -9,31 +9,26 @@ export default class AppContainer extends Component {
             filledForm: false,
             applicationNumber: '',
         }
-        this.checkApp = this.checkApp.bind(this);
+        this.findApplicant = this.findApplicant.bind(this);
     }
 
     componentWillMount() {
-        fetch('/api/login')
+        this.findApplicant();
+    }
+
+    findApplicant() {
+        fetch('http://localhost:8080/api/login')
             .then(response => response.json())
             .then(json => this.setState({
                 filledForm: json.filledForm,
                 applicationNumber: json.ApplicationNumber.toString()
-            }))
-    }
-
-    checkApp() {
-        fetch('/api/login')
-        .then(response => response.json())
-        .then(json => this.setState({
-            filledForm: json.filledForm,
-            applicationNumber: json.ApplicationNumber.toString()
-        }), this.forceUpdate())
+            }), this.forceUpdate())
     }
 
     handleSubmit(state) {
         return event => {
             event.preventDefault()
-            fetch('/api/form', {
+            fetch('http://localhost:8080/api/form', {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -42,7 +37,11 @@ export default class AppContainer extends Component {
                 body: JSON.stringify(state)
             })
                 .then(response => response.json())
-                .then(json => this.setState({ filledForm: json.filledForm }, this.checkApp))
+                .then(json => {
+                    if (json.filledForm) {
+                        this.setState({ filledForm: json.filledForm }, this.findApplicant())
+                    }
+                })
         }
     }
 

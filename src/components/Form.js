@@ -88,35 +88,35 @@ export default class FormContainer extends Component {
                     <form onSubmit={this.props.handleSubmit(this.state)}>
                         <div>
                             <label>First Name:&nbsp;</label>
-                            <input type="text" id="firstName" value={this.state.firstName} onChange={this.setFirstName} />
+                            <input type="text" id="firstName" value={this.state.firstName} onChange={this.setFirstName} required />
                         </div>
                         <div>
                             <label>Last Name:&nbsp;</label>
-                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.setLastName} />
+                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.setLastName} required />
                         </div>
                         <div>
                             <label>UBC Student Number:&nbsp;</label>
-                            <input type="number" id="id" value={this.state.id} onChange={this.setid} />
+                            <input type="number" id="id" value={this.state.id} onChange={this.setid} required />
                         </div>
                         <div>
                             <label>Email Address:&nbsp;</label>
-                            <input type="email" id="email" value={this.state.email} onChange={this.setEmail} />
+                            <input type="email" id="email" value={this.state.email} onChange={this.setEmail} required />
                         </div>
                         <div>
                             <label>Verify Email Address:&nbsp;</label>
-                            <input type="email" id="verifyEmail" value={this.state.verifyEmail} onChange={this.setVerifyEmail} />
+                            <input type="email" id="verifyEmail" value={this.state.verifyEmail} onChange={this.setVerifyEmail} required />
                             <div id='verifyEmail'> </div>
                         </div>
                         <div>
                             <label>Phone Number:&nbsp;</label>
-                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} />
+                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} required />
                         </div>
                         <div>
                             <label>Is this your first application to the UBC Dietetics Major?:</label>
                             <fieldset id="NumOfApps">
-                                <input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setApp} /> &nbsp; Yes &nbsp;&nbsp;
-                                <input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setApp} /> &nbsp; No, second &nbsp;&nbsp;
-                                <input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;
+                                <input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setNumOfApp} /> &nbsp; Yes &nbsp;&nbsp;
+                                <input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setNumOfApp} /> &nbsp; No, second &nbsp;&nbsp;
+                                <input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;
                             </fieldset>
                             <br />
                         </div>
