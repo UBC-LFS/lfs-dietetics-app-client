@@ -80,7 +80,6 @@ export default class AppContainer extends Component {
                     FD.append(name, state[name])
                 }
                 const xhr = new XMLHttpRequest();
-
                 xhr.addEventListener("readystatechange", () => {
                     if (this.readyState === 4) {
                         console.log(this.responseText);
