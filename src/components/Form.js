@@ -25,7 +25,6 @@ export default class FormContainer extends Component {
         this.setNumOfApp = this.setNumOfApp.bind(this);
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
-        this.uploadFile = this.uploadFile.bind(this);
         this.handleFileSelect = this.handleFileSelect.bind(this);
 
         //this.validateEmail = this.validateEmail.bind(this);
@@ -71,13 +70,27 @@ export default class FormContainer extends Component {
         this.setState({ aborId: event.target.value })
     }
 
-    handleFileSelect(event) {
-        this.setState({ files: event.target.value })
-    }
+    // handleFileSelect(event) {
+    //     const reader = new FileReader()
+    //     const file = event.target.files[0]
 
-    uploadFile(event) {
-        const file = this.state.files
-        console.log(file)
+    //     reader.onload = upload => {
+    //         this.setState({
+    //             files: {
+    //                 data_uri: upload.target.result,
+    //                 filename: file.name,
+    //                 filetype: file.type
+    //             }
+    //         })
+    //     }
+
+    //     reader.readAsDataURL(file)
+    // }
+
+    handleFileSelect(event) {
+        this.setState({
+            files: event.target.files[0]
+        })
     }
 
     render() {

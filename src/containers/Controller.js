@@ -31,9 +31,9 @@ export default class AppContainer extends Component {
             if (state.email === state.verifyEmail) {
                 let FD = new FormData()
                 for (let name in state) { FD.append(name, state[name]) }
+                console.log(state)
                 fetch('api/form', {
-                    headers: {
-                        'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                    headers: {  
                         'Content-Type': 'multipart/form-data'
                     },
                     method: "POST",
@@ -51,30 +51,9 @@ export default class AppContainer extends Component {
                 document.getElementById("error").innerHTML = html;
                 window.location.hash = 'error';
             }
-            if (state.files) {
-                fetch('api/file', {
-                    headers: {
-
-                    }
-                })
-            }
         }
     }
 
-    // handleFileUpload(state) {
-    //     return event => {
-    //         event.preventDefault()
-    //         fetch('api/file', {
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'multipart/form-data'
-    //             },
-    //             method: "POST",
-    //             body: state
-    //         }).then(response => response.json())
-    //           .then(x => console.log(x))
-    //     }
-    // }
 
     render() {
         return (
