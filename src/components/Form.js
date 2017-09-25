@@ -26,6 +26,8 @@ export default class Form extends Component {
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
         this.handleFileSelect = this.handleFileSelect.bind(this);
+        this.canBeAboriginal = this.canBeAboriginal.bind(this);
+        this.canBeSubmitted = this.canBeSubmitted.bind(this);
     }
 
     componentWillMount() {
@@ -72,7 +74,19 @@ export default class Form extends Component {
         this.setState({ files: event.target.files[0] })
     }
 
+    canBeAboriginal() {
+        return this.state.aboriginal.toUpperCase() === 'YES' ? true : false
+    }
+
+    canBeSubmitted() {
+        return (this.state.firstName.length > 0 && this.state.lastName.length > 0 &&
+            this.state.id.length > 0 && this.state.email.length > 0 && this.state.verifyEmail.length > 0 &&
+            this.state.phone.length > 0 && this.state.numOfApp.length > 0) ? true : false
+    }
+
     render() {
+        const isEnabled = this.canBeSubmitted();
+        const isAboriginal = this.canBeAboriginal();
         return (
             <div>
                 <div className="form">
@@ -105,7 +119,7 @@ export default class Form extends Component {
                         <div>
                             <label>Is this your first application to the UBC Dietetics Major?:</label>
                             <fieldset id="NumOfApps">
-                                <label><input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setNumOfApp} /> &nbsp; Yes &nbsp;&nbsp;</label>
+                                <label><input type="radio" name="appNum" value="yes" checked={this.state.numOfApp === 'yes'} onChange={this.setNumOfApp} required /> &nbsp; Yes &nbsp;&nbsp;</label>
                                 <label><input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setNumOfApp} /> &nbsp; No, second &nbsp;&nbsp;</label>
                                 <label><input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;</label>
                             </fieldset>
@@ -117,7 +131,7 @@ export default class Form extends Component {
                         </div>
                         <div>
                             <p><b>Note:</b> Students are only permitted to apply to the program two times, unless written permission is given via
-                                the 2018 Dietetics Admissions Special Permission Form (due <b>November 15, 2016</b>). If permission to re-apply has
+                                the 2018 Dietetics Admissions Special Permission Form (due <b>November 15, 2017</b>). If permission to re-apply has
                                 been granted, please include a copy of the signed form with your application).</p>
                         </div>
                         <div className="box">
@@ -140,15 +154,15 @@ export default class Form extends Component {
                             <div>
                                 <label>Do you identify with one or more of the following:</label>
                                 <fieldset id="aborId">
-                                    <label><input type="radio" name="idAbor" value="First Nation" checked={this.state.aborId === 'First Nation'} onChange={this.setAborId} /> &nbsp; First Nations &nbsp;&nbsp;</label>
-                                    <label><input type="radio" name="idAbor" value="Métis" checked={this.state.aborId === 'Métis'} onChange={this.setAborId} /> &nbsp; Métis &nbsp;&nbsp;</label>
-                                    <label><input type="radio" name="idAbor" value="Inuit" checked={this.state.aborId === 'Inuit'} onChange={this.setAborId} /> &nbsp; Inuit &nbsp;&nbsp;</label>
+                                    <label><input type="radio" name="idAbor" value="First Nation" checked={this.state.aborId === 'First Nation'} onChange={this.setAborId} disabled={!isAboriginal} /> &nbsp; First Nations &nbsp;&nbsp;</label>
+                                    <label><input type="radio" name="idAbor" value="Métis" checked={this.state.aborId === 'Métis'} onChange={this.setAborId} disabled={!isAboriginal} /> &nbsp; Métis &nbsp;&nbsp;</label>
+                                    <label><input type="radio" name="idAbor" value="Inuit" checked={this.state.aborId === 'Inuit'} onChange={this.setAborId} disabled={!isAboriginal} /> &nbsp; Inuit &nbsp;&nbsp;</label>
                                 </fieldset>
                             </div>
                         </div>
                         <div style={{ textAlign: 'center' }}>
                             <br /><br />
-                            <input className="btn" type="submit" value="Submit" />
+                            <input className="btn" type="submit" disabled={!isEnabled} value="Submit" />
                         </div>
                     </form>
                 </div>

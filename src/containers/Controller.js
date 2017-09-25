@@ -45,7 +45,7 @@ export default class AppContainer extends Component {
     }
 
     errorOutput(state) {
-        const errorList = []; 
+        const errorList = [];
         if (!this.validateName(state.firstName)) {
             errorList.push(' FIRST NAME')
         }
