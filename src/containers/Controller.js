@@ -26,74 +26,35 @@ export default class AppContainer extends Component {
     }
 
     vadlidateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     }
 
     handleSubmit(state) {
         return event => {
             event.preventDefault()
-            let FD = new FormData()
-            for (let name in state) {
-                FD.append(name, state[name])
-            }
-            for (let pair of FD.entries()) {
-                console.log(pair[0] + ', ' + pair[1]);
-            }
-            console.log(state)
-
-            const xhr = new XMLHttpRequest();
-
-            xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === 4) {
-                    console.log(this.responseText);
+            if (state.email === state.verifyEmail) {
+                let FD = new FormData()
+                for (let name in state) {
+                    FD.append(name, state[name])
                 }
-            });
+                const xhr = new XMLHttpRequest();
 
-            xhr.open("POST", "http://localhost:8080/api/form");
-            xhr.setRequestHeader("postman-token", "4c3be312-8b6d-de0f-bfc9-007a8f2eae86");
-            xhr.send(FD);
-            
-            // fetch('api/form', {
-            //     headers: {  
-            //         'cache-control': 'no-cache',
-            //         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
-            //     },
-            //     method: "POST",
-            //     body: FD
-            // })
-            // .then(response => response.json())
-            // .then(json => {
-            //     console.log(json.filledForm)
-            //     if (json.filledForm) {
-            //         this.setState({ filledForm: json.filledForm }, this.findApplicant())
-            //     }
-            // })
-            // if (state.email === state.verifyEmail) {
-            //     let FD = new FormData()
-            //     for (let name in state) { FD.append(name, state[name]) }
-            //     console.log(state)
-            //     fetch('api/form', {
-            //         headers: {  
-            //             'Content-Type': 'multipart/form-data'
-            //         },
-            //         method: "POST",
-            //         body: FD
-            //     })
-            //         .then(response => response.json())
-            //         .then(json => {
-            //             console.log(json.filledForm)
-            //             if (json.filledForm) {
-            //                 this.setState({ filledForm: json.filledForm }, this.findApplicant())
-            //             }
-            //         })
-            // } else {
-            //     let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
-            //     document.getElementById("error").innerHTML = html;
-            //     window.location.hash = 'error';
-            // }
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === 4) {
+                        console.log(this.responseText);
+                    }
+                });
+
+                xhr.open("POST", "http://localhost:8080/api/form");
+                xhr.setRequestHeader("postman-token", "4c3be312-8b6d-de0f-bfc9-007a8f2eae86");
+                xhr.send(FD);
+            } else {
+                let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
+                document.getElementById("error").innerHTML = html;
+                window.location.hash = 'error';
+            }
         }
     }
-
 
     render() {
         return (
