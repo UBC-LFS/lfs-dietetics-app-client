@@ -73,19 +73,13 @@ export default class AppContainer extends Component {
             if (this.validateName(state.firstName) && this.validateName(state.lastName)
                 && this.validateNumber(state.id) && this.validateNumber(state.phone)
                 && this.validateEmail(state.email) && this.validateEmail(state.verifyEmail)
-                && state.email.toUpperCase() === state.verifyEmail.toUpperCase()
-            ) {
+                && state.email.toUpperCase() === state.verifyEmail.toUpperCase()) {
                 let FD = new FormData()
                 for (let name in state) {
                     FD.append(name, state[name])
                 }
                 const xhr = new XMLHttpRequest();
-
-                xhr.addEventListener("readystatechange", () => {
-                    if (this.readyState === 4) {
-                        console.log(this.responseText);
-                    }
-                });
+                xhr.addEventListener("readystatechange");
                 xhr.open("POST", "api/form");
                 xhr.send(FD);
             } else {
