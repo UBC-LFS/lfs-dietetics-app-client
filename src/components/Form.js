@@ -146,16 +146,16 @@ export default class FormContainer extends Component {
                             <div>
                                 <label>Do you identify yourself as an Aboriginal person of Canada?</label>
                                 <fieldset id="aboriginal">
-                                    <input type="radio" name="abor" value="yes" checked={this.state.aboriginal === 'yes'} onChange={this.setAboriginal} /> &nbsp; Yes &nbsp;&nbsp;
-                                    <input type="radio" name="abor" value="no" checked={this.state.aboriginal === 'no'} onChange={this.setAboriginal} /> &nbsp; No &nbsp;&nbsp;
+                                    <label><input type="radio" name="abor" value="yes" checked={this.state.aboriginal === 'yes'} onChange={this.setAboriginal} /> &nbsp; Yes &nbsp;&nbsp;</label>
+                                    <label><input type="radio" name="abor" value="no" checked={this.state.aboriginal === 'no'} onChange={this.setAboriginal} /> &nbsp; No &nbsp;&nbsp;</label>
                                 </fieldset>
                             </div>
                             <div>
                                 <label>Do you identify with one or more of the following:</label>
                                 <fieldset id="aborId">
-                                    <input type="radio" name="idAbor" value="First Nation" checked={this.state.aborId === 'First Nation'} onChange={this.setAborId} /> &nbsp; First Nations &nbsp;&nbsp;
-                                    <input type="radio" name="idAbor" value="Métis" checked={this.state.aborId === 'Métis'} onChange={this.setAborId} /> &nbsp; Métis &nbsp;&nbsp;
-                                    <input type="radio" name="idAbor" value="Inuit" checked={this.state.aborId === 'Inuit'} onChange={this.setAborId} /> &nbsp; Inuit &nbsp;&nbsp;
+                                    <label><input type="radio" name="idAbor" value="First Nation" checked={this.state.aborId === 'First Nation'} onChange={this.setAborId} /> &nbsp; First Nations &nbsp;&nbsp;</label>
+                                    <label><input type="radio" name="idAbor" value="Métis" checked={this.state.aborId === 'Métis'} onChange={this.setAborId} /> &nbsp; Métis &nbsp;&nbsp;</label>
+                                    <label><input type="radio" name="idAbor" value="Inuit" checked={this.state.aborId === 'Inuit'} onChange={this.setAborId} /> &nbsp; Inuit &nbsp;&nbsp;</label>
                                 </fieldset>
                             </div>
                         </div>
