@@ -29,28 +29,41 @@ export default class AppContainer extends Component {
         return event => {
             event.preventDefault()
             let FD = new FormData()
-            for (let name in state) { 
-                FD.append(name, state[name]) 
+            for (let name in state) {
+                FD.append(name, state[name])
             }
             for (let pair of FD.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]); 
+                console.log(pair[0] + ', ' + pair[1]);
             }
             console.log(state)
-            fetch('api/form', {
-                headers: {  
-                    'cache-control': 'no-cache',
-                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
-                },
-                method: "POST",
-                data: FD
-            })
-            .then(response => response.json())
-            .then(json => {
-                console.log(json.filledForm)
-                if (json.filledForm) {
-                    this.setState({ filledForm: json.filledForm }, this.findApplicant())
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
                 }
-            })
+            });
+
+            xhr.open("POST", "http://localhost:8080/api/form");
+            xhr.setRequestHeader("postman-token", "4c3be312-8b6d-de0f-bfc9-007a8f2eae86");
+            xhr.send(FD);
+            
+            // fetch('api/form', {
+            //     headers: {  
+            //         'cache-control': 'no-cache',
+            //         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+            //     },
+            //     method: "POST",
+            //     body: FD
+            // })
+            // .then(response => response.json())
+            // .then(json => {
+            //     console.log(json.filledForm)
+            //     if (json.filledForm) {
+            //         this.setState({ filledForm: json.filledForm }, this.findApplicant())
+            //     }
+            // })
             // if (state.email === state.verifyEmail) {
             //     let FD = new FormData()
             //     for (let name in state) { FD.append(name, state[name]) }
