@@ -26,8 +26,6 @@ export default class Form extends Component {
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
         this.handleFileSelect = this.handleFileSelect.bind(this);
-
-        //this.validateEmail = this.validateEmail.bind(this);
     }
 
     componentWillMount() {
@@ -70,27 +68,8 @@ export default class Form extends Component {
         this.setState({ aborId: event.target.value })
     }
 
-    // handleFileSelect(event) {
-    //     const reader = new FileReader()
-    //     const file = event.target.files[0]
-
-    //     reader.onload = upload => {
-    //         this.setState({
-    //             files: {
-    //                 data_uri: upload.target.result,
-    //                 filename: file.name,
-    //                 filetype: file.type
-    //             }
-    //         })
-    //     }
-
-    //     reader.readAsDataURL(file)
-    // }
-
     handleFileSelect(event) {
-        this.setState({
-            files: event.target.files[0]
-        })
+        this.setState({ files: event.target.files[0] })
     }
 
     render() {

@@ -10,6 +10,9 @@ export default class AppContainer extends Component {
             applicationNumber: '',
         }
         this.findApplicant = this.findApplicant.bind(this);
+        this.validateName = this.validateName.bind(this);
+        this.validateNumber = this.validateNumber.bind(this);
+        this.validateEmail = this.validateEmail.bind(this);
     }
 
     componentWillMount() {
@@ -25,14 +28,30 @@ export default class AppContainer extends Component {
             }), this.forceUpdate())
     }
 
-    vadlidateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    validateName(name) {
+        const verify = /^[A-Za-z\s]+$/
+        return verify.test(name)
+    }
+
+    validateNumber(num) {
+        const verify = /^\d+$/
+        return verify.test(num)
+    }
+
+    validateEmail(email) {
+        const verify = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return verify.test(email)
     }
 
     handleSubmit(state) {
         return event => {
             event.preventDefault()
-            if (state.email === state.verifyEmail) {
+            if (this.validateName(state.firstName) && this.validateName(state.lastName)
+                && this.validateNumber(state.id) && this.validateNumber(state.phone)
+                && this.validateEmail(state.email) && this.validateEmail(state.verifyEmail)) {
+                console.log('yes')
+            }
+            if (this.validateEmail(state.email)) {
                 let FD = new FormData()
                 for (let name in state) {
                     FD.append(name, state[name])
@@ -44,8 +63,7 @@ export default class AppContainer extends Component {
                         console.log(this.responseText);
                     }
                 });
-
-                xhr.open("POST", "http://localhost:8080/api/form");
+                xhr.open("POST", "api/form");
                 xhr.setRequestHeader("postman-token", "4c3be312-8b6d-de0f-bfc9-007a8f2eae86");
                 xhr.send(FD);
             } else {
