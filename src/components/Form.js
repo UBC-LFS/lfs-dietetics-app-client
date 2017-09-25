@@ -137,7 +137,7 @@ export default class FormContainer extends Component {
                             <p><b>Aboriginal Student Self-Identification - Optional Question</b> </p>
                             <p> UBC is dedicated to supporting Aboriginal student success. The university has developed a wide variety of programs
                                     and student serives for Aboriginal students, including academic programs, admission policies, housing and financial
-                                    awards. <b>Self-identification is optional</b>. If you are an Aboiginal person, we encourage you to self-identify
+                                    awards. <b>Self-identification is optional</b>. If you are an Aboriginal person, we encourage you to self-identify
                                     so that you may benefit from these programs and services. </p>
                             <p> We use the term "Aboriginal" in the spirit of its use in section 35(2) of the Canadian Constitution, to refer inclusively to members of First Nations,
                                     status and non-status, treaty and non-treaty Indians, Métis, and Inuit peoples in Canada, recognizing in doing so that many people may perfer
