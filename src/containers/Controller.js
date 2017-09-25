@@ -13,6 +13,7 @@ export default class AppContainer extends Component {
         this.validateName = this.validateName.bind(this);
         this.validateNumber = this.validateNumber.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
+        this.errorOutput = this.errorOutput.bind(this);
     }
 
     componentWillMount() {
@@ -43,22 +44,44 @@ export default class AppContainer extends Component {
         return verify.test(email)
     }
 
+    errorOutput(state) {
+        const errorList = []; 
+        if (!this.validateName(state.firstName)) {
+            errorList.push(' FIRST NAME')
+        }
+        if (!this.validateName(state.lastName)) {
+            errorList.push(' LAST NAME')
+        }
+        if (!this.validateNumber(state.id)) {
+            errorList.push(' STUDENT NUMBER')
+        }
+        if (!this.validateNumber(state.phone)) {
+            errorList.push(' PHONE NUMBER')
+        }
+        if (!this.validateEmail(state.email) || !this.validateEmail(state.verifyEmail)) {
+            errorList.push(' INVALID EMAIL')
+        }
+        if (!state.email.toUpperCase() === state.verifyEmail.toUpperCase()) {
+            errorList.push(' EMAILS DO NOT MATCH')
+        }
+        return errorList;
+    }
+
     handleSubmit(state) {
         return event => {
             event.preventDefault()
             if (this.validateName(state.firstName) && this.validateName(state.lastName)
                 && this.validateNumber(state.id) && this.validateNumber(state.phone)
-                && this.validateEmail(state.email) && this.validateEmail(state.verifyEmail)) {
-                console.log('yes')
-            }
-            if (this.validateEmail(state.email)) {
+                && this.validateEmail(state.email) && this.validateEmail(state.verifyEmail)
+                && state.email.toUpperCase() === state.verifyEmail.toUpperCase()
+            ) {
                 let FD = new FormData()
                 for (let name in state) {
                     FD.append(name, state[name])
                 }
                 const xhr = new XMLHttpRequest();
 
-                xhr.addEventListener("readystatechange", function () {
+                xhr.addEventListener("readystatechange", () => {
                     if (this.readyState === 4) {
                         console.log(this.responseText);
                     }
@@ -66,7 +89,8 @@ export default class AppContainer extends Component {
                 xhr.open("POST", "api/form");
                 xhr.send(FD);
             } else {
-                let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
+                const err = this.errorOutput(state)
+                const html = `<font color="red"> THE FOLLOWING FIELDS ARE INVALID: ${err} <br> PLEASE TRY AGAIN  </font>`;
                 document.getElementById("error").innerHTML = html;
                 window.location.hash = 'error';
             }
