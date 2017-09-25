@@ -72,9 +72,7 @@ export default class FormContainer extends Component {
     }
 
     handleFileSelect(event) {
-        this.setState({
-            files: event.target.value
-        })
+        this.setState({ files: event.target.value })
     }
 
     uploadFile(event) {
@@ -120,11 +118,8 @@ export default class FormContainer extends Component {
                                 <label><input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;</label>
                             </fieldset>
                             <div>   
-                                { this.state.numOfApp === 'other' ?  <form onSubmit={this.props.handleFileUpload(this.state)}>
-                                                                        <input type="file" name="file" ref="file" onChange={this.handleFileSelect}/><br /> 
-                                                                        <input type="submit" />
-                                                                    </form> 
-                                                                : null}
+                                { this.state.numOfApp === 'other' ?  <input type="file" name="file" ref="file" onChange={this.handleFileSelect}/>
+                                                                  : null}
                             </div>
                             <br />
                         </div>
