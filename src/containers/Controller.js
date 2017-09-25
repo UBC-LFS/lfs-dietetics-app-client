@@ -32,29 +32,52 @@ export default class AppContainer extends Component {
     handleSubmit(state) {
         return event => {
             event.preventDefault()
-            if (state.email === state.verifyEmail) {
-                let FD = new FormData()
-                for (let name in state) { FD.append(name, state[name]) }
-                console.log(state)
-                fetch('api/form', {
-                    headers: {  
-                        'Content-Type': 'multipart/form-data'
-                    },
-                    method: "POST",
-                    body: FD
-                })
-                    .then(response => response.json())
-                    .then(json => {
-                        console.log(json.filledForm)
-                        if (json.filledForm) {
-                            this.setState({ filledForm: json.filledForm }, this.findApplicant())
-                        }
-                    })
-            } else {
-                let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
-                document.getElementById("error").innerHTML = html;
-                window.location.hash = 'error';
+            let FD = new FormData()
+            for (let name in state) { 
+                FD.append(name, state[name]) 
             }
+            for (let pair of FD.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
+            console.log(state)
+            fetch('api/form', {
+                headers: {  
+                    'cache-control': 'no-cache',
+                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+                },
+                method: "POST",
+                data: FD
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json.filledForm)
+                if (json.filledForm) {
+                    this.setState({ filledForm: json.filledForm }, this.findApplicant())
+                }
+            })
+            // if (state.email === state.verifyEmail) {
+            //     let FD = new FormData()
+            //     for (let name in state) { FD.append(name, state[name]) }
+            //     console.log(state)
+            //     fetch('api/form', {
+            //         headers: {  
+            //             'Content-Type': 'multipart/form-data'
+            //         },
+            //         method: "POST",
+            //         body: FD
+            //     })
+            //         .then(response => response.json())
+            //         .then(json => {
+            //             console.log(json.filledForm)
+            //             if (json.filledForm) {
+            //                 this.setState({ filledForm: json.filledForm }, this.findApplicant())
+            //             }
+            //         })
+            // } else {
+            //     let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
+            //     document.getElementById("error").innerHTML = html;
+            //     window.location.hash = 'error';
+            // }
         }
     }
 
