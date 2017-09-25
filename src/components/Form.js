@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class FormContainer extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -31,7 +31,7 @@ export default class FormContainer extends Component {
     }
 
     componentWillMount() {
-        this.setState({ date: new Date().toJSON().slice(0,10).toString() })
+        this.setState({ date: new Date().toJSON().slice(0, 10).toString() })
     }
 
     setFirstName(event) {
@@ -130,9 +130,9 @@ export default class FormContainer extends Component {
                                 <label><input type="radio" name="appNum" value="no" checked={this.state.numOfApp === 'no'} onChange={this.setNumOfApp} /> &nbsp; No, second &nbsp;&nbsp;</label>
                                 <label><input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;</label>
                             </fieldset>
-                            <div>   
-                                { this.state.numOfApp === 'other' ?  <input type="file" name="file" ref="file" onChange={this.handleFileSelect}/>
-                                                                  : null}
+                            <div>
+                                {this.state.numOfApp === 'other' ? <input type="file" name="file" ref="file" onChange={this.handleFileSelect} />
+                                    : null}
                             </div>
                             <br />
                         </div>
