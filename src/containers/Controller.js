@@ -46,7 +46,6 @@ export default class AppContainer extends Component {
                 });
 
                 xhr.open("POST", "http://localhost:8080/api/form");
-                xhr.setRequestHeader("postman-token", "4c3be312-8b6d-de0f-bfc9-007a8f2eae86");
                 xhr.send(FD);
             } else {
                 let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
