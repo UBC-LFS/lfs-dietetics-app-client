@@ -17,7 +17,7 @@ export default class AppContainer extends Component {
     }
 
     findApplicant() {
-        fetch('http://localhost:8080/api/login')
+        fetch('api/login')
             .then(response => response.json())
             .then(json => this.setState({
                 filledForm: json.filledForm,
@@ -28,20 +28,27 @@ export default class AppContainer extends Component {
     handleSubmit(state) {
         return event => {
             event.preventDefault()
-            fetch('http://localhost:8080/api/form', {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify(state)
-            })
-                .then(response => response.json())
-                .then(json => {
-                    if (json.filledForm) {
-                        this.setState({ filledForm: json.filledForm }, this.findApplicant())
-                    }
+            if (state.email === state.verifyEmail) {
+                fetch('api/form', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify(state)
                 })
+                    .then(response => response.json())
+                    .then(json => {
+                        console.log(json.filledForm)
+                        if (json.filledForm) {
+                            this.setState({ filledForm: json.filledForm }, this.findApplicant())
+                        }
+                    })
+            } else {
+                let html = '<font color="red"> EMAIL ADDRESS DOES NOT MATCH, PLEASE TRY AGAIN  </font>';
+                document.getElementById("error").innerHTML = html;
+                window.location.hash = 'error';
+            }
         }
     }
 
@@ -64,6 +71,7 @@ export default class AppContainer extends Component {
         return (
             <div className='app-container'>
                 <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2018 </h1>
+                <div style={{ textAlign: 'center' }} id='error'></div>
                 {this.state.filledForm === true ? (
                     <AppNumber applicationNumber={this.state.applicationNumber} />
                 ) : (
