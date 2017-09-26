@@ -56,7 +56,7 @@ export default class AppContainer extends Component {
             errorList.push(' STUDENT NUMBER')
         }
         if (!this.validateNumber(state.phone)) {
-            errorList.push(' PHONE NUMBER')
+            errorList.push(' PHONE NUMBER SHOULD ONLY CONTAIN NUMBERS')
         }
         if (!this.validateEmail(state.email) || !this.validateEmail(state.verifyEmail)) {
             errorList.push(' INVALID EMAIL')
