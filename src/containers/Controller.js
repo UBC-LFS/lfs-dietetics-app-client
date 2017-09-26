@@ -9,25 +9,25 @@ export default class AppContainer extends Component {
             filledForm: false,
             applicationNumber: '',
         }
-        this.findApplicant = this.findApplicant.bind(this);
+        //this.findApplicant = this.findApplicant.bind(this);
         this.validateName = this.validateName.bind(this);
         this.validateNumber = this.validateNumber.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
         this.errorOutput = this.errorOutput.bind(this);
     }
 
-    componentDidMount() {
-        this.findApplicant();
-    }
+    // componentDidMount() {
+    //     this.findApplicant();
+    // }
 
-    findApplicant() {
-        fetch('api/login')
-            .then(response => response.json())
-            .then(json => this.setState({
-                filledForm: json.filledForm,
-                applicationNumber: json.ApplicationNumber.toString()
-            }), this.forceUpdate())
-    }
+    // findApplicant() {
+    //     fetch('api/login')
+    //         .then(response => response.json())
+    //         .then(json => this.setState({
+    //             filledForm: json.filledForm,
+    //             applicationNumber: json.ApplicationNumber.toString()
+    //         }), this.forceUpdate())
+    // }
 
     validateName(name) {
         const verify = /^[A-Za-z\s]+$/
