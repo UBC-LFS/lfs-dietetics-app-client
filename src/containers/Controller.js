@@ -21,7 +21,7 @@ export default class AppContainer extends Component {
     }
 
     findApplicant() {
-        fetch('api/login')
+        fetch('dietetics/api/login')
             .then(response => response.json())
             .then(json => this.setState({
                 filledForm: json.filledForm,
@@ -85,7 +85,7 @@ export default class AppContainer extends Component {
                         console.log(this.responseText);
                     }
                 });
-                xhr.open("POST", "api/form");
+                xhr.open("POST", "dietetics/api/form");
                 xhr.send(FD);
             } else {
                 const err = this.errorOutput(state)
