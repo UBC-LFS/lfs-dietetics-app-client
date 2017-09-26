@@ -27,7 +27,6 @@ export default class Form extends Component {
         this.setAborId = this.setAborId.bind(this);
         this.handleFileSelect = this.handleFileSelect.bind(this);
         this.canBeAboriginal = this.canBeAboriginal.bind(this);
-        this.canBeSubmitted = this.canBeSubmitted.bind(this);
     }
 
     componentWillMount() {
@@ -78,14 +77,7 @@ export default class Form extends Component {
         return this.state.aboriginal.toUpperCase() === 'YES' ? true : false
     }
 
-    canBeSubmitted() {
-        return (this.state.firstName.length > 0 && this.state.lastName.length > 0 &&
-            this.state.id.length > 0 && this.state.email.length > 0 && this.state.verifyEmail.length > 0 &&
-            this.state.phone.length > 0 && this.state.numOfApp.length > 0) ? true : false
-    }
-
     render() {
-        const isEnabled = this.canBeSubmitted();
         const isAboriginal = this.canBeAboriginal();
         return (
             <div>
@@ -114,7 +106,7 @@ export default class Form extends Component {
                         </div>
                         <div>
                             <label>Phone Number:&nbsp;</label>
-                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} required />
+                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} placeholder="604XXXXXXX" required />
                         </div>
                         <div>
                             <label>Is this your first application to the UBC Dietetics Major?:</label>
@@ -162,7 +154,7 @@ export default class Form extends Component {
                         </div>
                         <div style={{ textAlign: 'center' }}>
                             <br /><br />
-                            <input className="btn" type="submit" disabled={!isEnabled} value="Submit" />
+                            <input className="btn" type="submit" value="Submit" />
                         </div>
                     </form>
                 </div>
