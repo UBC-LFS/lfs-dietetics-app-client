@@ -16,7 +16,7 @@ export default class AppContainer extends Component {
         this.errorOutput = this.errorOutput.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.findApplicant();
     }
 
