@@ -21,7 +21,7 @@ export default class AppContainer extends Component {
     }
 
     findApplicant() {
-        fetch('dietetics/api/login')
+        fetch('api/login')
             .then(response => response.json())
             .then(json => this.setState({
                 filledForm: json.filledForm,
@@ -56,12 +56,12 @@ export default class AppContainer extends Component {
             errorList.push(' STUDENT NUMBER')
         }
         if (!this.validateNumber(state.phone)) {
-            errorList.push(' PHONE NUMBER (SHOULD ONLY CONTAIN NUMBERS)')
+            errorList.push(' PHONE NUMBER')
         }
         if (!this.validateEmail(state.email) || !this.validateEmail(state.verifyEmail)) {
             errorList.push(' INVALID EMAIL')
         }
-        if (state.email.toUpperCase() !== state.verifyEmail.toUpperCase()) {
+        if (!state.email.toUpperCase() === state.verifyEmail.toUpperCase()) {
             errorList.push(' EMAILS DO NOT MATCH')
         }
         return errorList;
@@ -85,7 +85,7 @@ export default class AppContainer extends Component {
                         console.log(this.responseText);
                     }
                 });
-                xhr.open("POST", "dietetics/api/form");
+                xhr.open("POST", "api/form");
                 xhr.send(FD);
             } else {
                 const err = this.errorOutput(state)
