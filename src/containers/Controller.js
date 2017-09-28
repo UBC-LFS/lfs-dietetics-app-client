@@ -21,7 +21,7 @@ export default class AppContainer extends Component {
     }
 
     findApplicant() {
-       const xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", () => {
             if (this.readyState === 4 && this.status === 200) {
                 const json = this.responseText.json()
@@ -30,11 +30,11 @@ export default class AppContainer extends Component {
         });
         xhr.open("get", "api/login");
         xhr.send();
-            // .then(response => response.json())
-            // .then(json => this.setState({
-            //     filledForm: json.filledForm,
-            //     applicationNumber: json.ApplicationNumber.toString()
-            // }), this.forceUpdate())
+        // .then(response => response.json())
+        // .then(json => this.setState({
+        //     filledForm: json.filledForm,
+        //     applicationNumber: json.ApplicationNumber.toString()
+        // }), this.forceUpdate())
     }
 
     validateName(name) {
@@ -83,16 +83,26 @@ export default class AppContainer extends Component {
                 && this.validateEmail(state.email) && this.validateEmail(state.verifyEmail)
                 && state.email.toUpperCase() === state.verifyEmail.toUpperCase()
             ) {
+                document.getElementById("error").innerHTML = "";
                 let FD = new FormData()
                 for (let name in state) {
                     FD.append(name, state[name])
                 }
                 const xhr = new XMLHttpRequest();
-                xhr.addEventListener("readystatechange", () => {
-                    if (this.readyState === 4 && this.status === 200) {
-                        console.log(this.responseText);
+                xhr.onload = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const json = xhr.response
+                        console.log(json.type)
+                        console.log(json.msg.code)
+                        if (json.type === 'error') {
+                            if (json.msg.code !== null) {
+                                document.getElementById("error").innerHTML = "ERROR: FILE SIZE LIMIT IS 10MB";
+                            } else {
+                                document.getElementById("error").innerHTML = "ERROR: ONLY FILE TYPE PDF, DOC, OR JPEG ACCEPTED";
+                            }
+                        }
                     }
-                });
+                }
                 xhr.open("POST", "api/form");
                 xhr.send(FD);
             } else {
