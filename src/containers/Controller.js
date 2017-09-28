@@ -21,12 +21,20 @@ export default class AppContainer extends Component {
     }
 
     findApplicant() {
-        fetch('api/login')
-            .then(response => response.json())
-            .then(json => this.setState({
-                filledForm: json.filledForm,
-                applicationNumber: json.ApplicationNumber.toString()
-            }), this.forceUpdate())
+       const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", () => {
+            if (this.readyState === 4 && this.status === 200) {
+                const json = this.responseText.json()
+                console.log(json)
+            }
+        });
+        xhr.open("get", "api/login");
+        xhr.send();
+            // .then(response => response.json())
+            // .then(json => this.setState({
+            //     filledForm: json.filledForm,
+            //     applicationNumber: json.ApplicationNumber.toString()
+            // }), this.forceUpdate())
     }
 
     validateName(name) {
