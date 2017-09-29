@@ -116,7 +116,7 @@ export default class Form extends Component {
                                 <label><input type="radio" name="appNum" value="other" checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (permission note is attached) &nbsp;&nbsp;</label>
                             </fieldset>
                             <div>
-                                {this.state.numOfApp === 'other' ? <input type="file" name="file" ref="file" onChange={this.handleFileSelect} />
+                                {this.state.numOfApp === 'other' ? (<label> <input type="file" name="file" ref="file" onChange={this.handleFileSelect} /> 10mb file upload limit </label>)
                                     : null}
                             </div>
                             <br />
