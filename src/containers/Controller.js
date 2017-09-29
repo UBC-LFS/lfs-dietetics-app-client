@@ -110,9 +110,7 @@ export default class AppContainer extends Component {
                 xhr.send(FD);
             } else {
                 const err = this.errorOutput(state)
-                const html = `<font color="red"> THE FOLLOWING FIELDS ARE INVALID: ${err} <br> PLEASE TRY AGAIN  </font>`;
-                document.getElementById("error").innerHTML = html;
-                window.location.hash = 'error';
+                alert(err)
             }
         }
     }

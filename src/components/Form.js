@@ -112,7 +112,7 @@ export default class Form extends Component {
                         </div>
                         <div>
                             <label>Phone Number:&nbsp;</label>
-                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} placeholder="604XXXXXXX" required />
+                            <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} placeholder="" required />
                         </div>
                         <div>
                             <label>Birthday:&nbsp;</label>
@@ -139,7 +139,7 @@ export default class Form extends Component {
                         <div className="box">
                             <p><b>Aboriginal Student Self-Identification - Optional Question</b> </p>
                             <p> UBC is dedicated to supporting Aboriginal student success. The university has developed a wide variety of programs
-                                    and student serives for Aboriginal students, including academic programs, admission policies, housing and financial
+                                    and student services for Aboriginal students, including academic programs, admission policies, housing and financial
                                     awards. <b>Self-identification is optional</b>. If you are an Aboriginal person, we encourage you to self-identify
                                     so that you may benefit from these programs and services. </p>
                             <p> We use the term "Aboriginal" in the spirit of its use in section 35(2) of the Canadian Constitution, to refer inclusively to members of First Nations,
