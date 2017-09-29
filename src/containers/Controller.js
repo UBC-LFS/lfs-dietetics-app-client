@@ -91,9 +91,9 @@ export default class AppContainer extends Component {
                 const xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
-                        const json = xhr.response
-                        console.log(json.type)
-                        console.log(json.msg.code)
+                        const json = JSON.parse(xhr.responseText)
+                        console.log(json)
+                        console.log(xhr.response)
                         if (json.type === 'error') {
                             if (json.msg.code !== null) {
                                 document.getElementById("error").innerHTML = "ERROR: FILE SIZE LIMIT IS 10MB";
