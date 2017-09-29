@@ -92,13 +92,12 @@ export default class AppContainer extends Component {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         const json = JSON.parse(xhr.response)
                         if (json.type === 'render') {
-                            console.log('hi')
                             this.findApplicant()
                         }
                     } else if (xhr.readyState === 4 && xhr.status === 404) {
                         const json = JSON.parse(xhr.response)
                         if (json.type === 'error') {
-                            if (json.msg.code !== null) {
+                            if (typeof json.msg.code !== 'undefined') {
                                 alert("Error! File size limit is 10MB. Please upload a smaller file.");
                             } else {
                                 alert("Error! Only the following file types are accepted: PDF, DOC, DOCX, JPEG");
