@@ -10,6 +10,7 @@ export default class Form extends Component {
             email: '',
             verifyEmail: '',
             phone: '',
+            birthday: '',
             numOfApp: '',
             aboriginal: '',
             aborId: '',
@@ -22,6 +23,7 @@ export default class Form extends Component {
         this.setEmail = this.setEmail.bind(this);
         this.setVerifyEmail = this.setVerifyEmail.bind(this);
         this.setPhone = this.setPhone.bind(this);
+        this.setBirthday = this.setBirthday.bind(this);
         this.setNumOfApp = this.setNumOfApp.bind(this);
         this.setAboriginal = this.setAboriginal.bind(this);
         this.setAborId = this.setAborId.bind(this);
@@ -55,6 +57,10 @@ export default class Form extends Component {
 
     setPhone(event) {
         this.setState({ phone: event.target.value })
+    }
+
+    setBirthday(event) {
+        this.setState({ birthday: event.target.value })
     }
 
     setNumOfApp(event) {
@@ -107,6 +113,10 @@ export default class Form extends Component {
                         <div>
                             <label>Phone Number:&nbsp;</label>
                             <input type="number" id="phone" value={this.state.phone} onChange={this.setPhone} placeholder="604XXXXXXX" required />
+                        </div>
+                        <div>
+                            <label>Birthday:&nbsp;</label>
+                            <input type="date" id="birthday" value={this.state.birthday} onChange={this.setBirthday} required />
                         </div>
                         <div>
                             <label>Is this your first application to the UBC Dietetics Major?:</label>
