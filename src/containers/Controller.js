@@ -16,25 +16,24 @@ export default class AppContainer extends Component {
         this.errorOutput = this.errorOutput.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.findApplicant();
     }
 
     findApplicant() {
         const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", () => {
-            if (this.readyState === 4 && this.status === 200) {
-                const json = this.responseText.json()
-                console.log(json)
+        xhr.onload = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const json = JSON.parse(xhr.response)
+                if (json.type === 'render')
+                    this.setState({
+                        filledForm: json.filledForm,
+                        applicationNumber: json.ApplicationNumber.toString()
+                    }, this.forceUpdate())
             }
-        });
-        xhr.open("get", "api/login");
-        xhr.send();
-        // .then(response => response.json())
-        // .then(json => this.setState({
-        //     filledForm: json.filledForm,
-        //     applicationNumber: json.ApplicationNumber.toString()
-        // }), this.forceUpdate())
+        }
+        xhr.open("get", "api/login")
+        xhr.send()
     }
 
     validateName(name) {
@@ -89,11 +88,15 @@ export default class AppContainer extends Component {
                     FD.append(name, state[name])
                 }
                 const xhr = new XMLHttpRequest();
-                xhr.onload = function () {
+                xhr.onload = () => {
                     if (xhr.readyState === 4 && xhr.status === 200) {
-                        const json = JSON.parse(xhr.responseText)
-                        console.log(json)
-                        console.log(xhr.response)
+                        const json = JSON.parse(xhr.response)
+                        if (json.type === 'render') {
+                            console.log('hi')
+                            this.findApplicant()
+                        }
+                    } else if (xhr.readyState === 4 && xhr.status === 404) {
+                        const json = JSON.parse(xhr.response)
                         if (json.type === 'error') {
                             if (json.msg.code !== null) {
                                 alert("Error! File size limit is 10MB. Please upload a smaller file.");
