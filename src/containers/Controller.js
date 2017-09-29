@@ -96,9 +96,9 @@ export default class AppContainer extends Component {
                         console.log(xhr.response)
                         if (json.type === 'error') {
                             if (json.msg.code !== null) {
-                                alert("ERROR: FILE SIZE LIMIT IS 10MB");
+                                alert("Error! File size limit is 10MB. Please upload a smaller file.");
                             } else {
-                                alert("ERROR: ONLY FILE TYPE PDF, DOC, OR JPEG ACCEPTED");
+                                alert("Error! Only the following file types are accepted: PDF, DOC, DOCX, JPEG");
                             }
                         }
                     }
