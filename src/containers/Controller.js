@@ -6,7 +6,7 @@ export default class AppContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            filledForm: false,
+            filledForm: true,
             applicationNumber: '',
         }
         this.findApplicant = this.findApplicant.bind(this);
