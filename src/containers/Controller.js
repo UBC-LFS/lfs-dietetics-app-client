@@ -109,6 +109,9 @@ export default class AppContainer extends Component {
                                 alert("Error! Only the following file types are accepted: PDF, DOC, DOCX, JPEG");
                             }
                         }
+                        if (json.type === 'sql-error') { 
+                            alert("Applicantion Error, please contact justin.lee@ubc.ca for assistance");
+                        }
                     }
                 }
                 xhr.open("POST", "api/form");
@@ -132,9 +135,6 @@ export default class AppContainer extends Component {
                         <Form handleSubmit={this.handleSubmit.bind(this)} />
                     )
                 }
-                <div>
-                    <a href="https://secure.landfood.ubc.ca/Shibboleth.sso/Logout?return=http://dietetics.landfood.ubc.ca" >CWL LOGOUT</a>
-                </div>
             </div>
         )
     }
