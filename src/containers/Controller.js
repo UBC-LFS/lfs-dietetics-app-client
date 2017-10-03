@@ -72,6 +72,9 @@ export default class AppContainer extends Component {
             || !this.validateEmail(state.verifyUBCEmail) || !this.validateEmail(state.UBCEmail)) {
             errorList.push(' EMAIL')
         }
+        if (state.verifyUBCEmail.toUpperCase() !== state.UBCEmail.toUpperCase()) {
+            errorList.push(' EMAILS DO NOT MATCH')
+        }
         if (state.email.toUpperCase() !== state.verifyEmail.toUpperCase()) {
             errorList.push(' EMAILS DO NOT MATCH')
         }
@@ -79,6 +82,7 @@ export default class AppContainer extends Component {
     }
 
     handleSubmit(state) {
+        console.log(state)
         return event => {
             event.preventDefault()
             if (this.validateName(state.firstName) && this.validateName(state.lastName)
