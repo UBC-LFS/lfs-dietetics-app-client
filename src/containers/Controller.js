@@ -125,6 +125,9 @@ export default class AppContainer extends Component {
                         <Form handleSubmit={this.handleSubmit.bind(this)} />
                     )
                 }
+                <div>
+                    <a href="https://secure.landfood.ubc.ca/Shibboleth.sso/Logout?return=http://dietetics.landfood.ubc.ca" >CWL LOGOUT</a>
+                </div>
             </div>
         )
     }
