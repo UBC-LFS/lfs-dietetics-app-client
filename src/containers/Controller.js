@@ -59,13 +59,17 @@ export default class AppContainer extends Component {
         if (!this.validateName(state.lastName)) {
             errorList.push(' LAST NAME')
         }
+        if (!this.validateName(state.currentInstitution)) {
+            errorList.push(' CURRENT INSTITUTION')
+        }
         if (!this.validateNumber(state.id)) {
             errorList.push(' STUDENT NUMBER')
         }
         if (!this.validateNumber(state.phone)) {
             errorList.push(' PHONE NUMBER (NUMBERS ONLY)')
         }
-        if (!this.validateEmail(state.email) || !this.validateEmail(state.verifyEmail)) {
+        if (!this.validateEmail(state.email) || !this.validateEmail(state.verifyEmail) 
+            || !this.validateEmail(state.verifyUBCEmail) || !this.validateEmail(state.UBCEmail)) {
             errorList.push(' EMAIL')
         }
         if (state.email.toUpperCase() !== state.verifyEmail.toUpperCase()) {
@@ -78,11 +82,13 @@ export default class AppContainer extends Component {
         return event => {
             event.preventDefault()
             if (this.validateName(state.firstName) && this.validateName(state.lastName)
+                && this.validateName(state.currentInstitution)
                 && this.validateNumber(state.id) && this.validateNumber(state.phone)
                 && this.validateEmail(state.email) && this.validateEmail(state.verifyEmail)
+                && this.validateEmail(state.UBCEmail) && this.validateEmail(state.verifyUBCEmail)
                 && state.email.toUpperCase() === state.verifyEmail.toUpperCase()
+                && state.UBCEmail.toUpperCase() === state.verifyUBCEmail.toUpperCase()
             ) {
-                document.getElementById("error").innerHTML = "";
                 let FD = new FormData()
                 for (let name in state) {
                     FD.append(name, state[name])
@@ -108,8 +114,9 @@ export default class AppContainer extends Component {
                 xhr.open("POST", "api/form");
                 xhr.send(FD);
             } else {
-                const err = this.errorOutput(state)
-                alert(err)
+                const err = this.errorOutput(state).join(',')
+                console.log(err)
+                alert('There is a problem with the following: ' + err)
             }
         }
     }

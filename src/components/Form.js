@@ -6,9 +6,12 @@ export default class Form extends Component {
         this.state = {
             firstName: '',
             lastName: '',
+            currentInstitution: '',
             id: '',
             email: '',
             verifyEmail: '',
+            UBCEmail: '',
+            verifyUBCEmail: '',
             phone: '',
             birthday: '',
             numOfApp: '',
@@ -19,7 +22,10 @@ export default class Form extends Component {
         }
         this.setFirstName = this.setFirstName.bind(this);
         this.setLastName = this.setLastName.bind(this);
+        this.setCurrentInstitution = this.setCurrentInstitution.bind(this);
         this.setid = this.setid.bind(this);
+        this.setUBCEmail = this.setUBCEmail.bind(this);
+        this.setVerifyUBCEmail = this.setVerifyUBCEmail.bind(this);
         this.setEmail = this.setEmail.bind(this);
         this.setVerifyEmail = this.setVerifyEmail.bind(this);
         this.setPhone = this.setPhone.bind(this);
@@ -43,10 +49,21 @@ export default class Form extends Component {
         this.setState({ lastName: event.target.value })
     }
 
+    setCurrentInstitution(event) {
+        this.setState({ currentInstitution: event.target.value })
+    }
+
     setid(event) {
         this.setState({ id: event.target.value })
     }
 
+    setUBCEmail(event) {
+        this.setState({ UBCEmail: event.target.value })
+    }
+
+    setVerifyUBCEmail(event) {
+        this.setState({ verifyUBCEmail: event.target.value })
+    }
     setEmail(event) {
         this.setState({ email: event.target.value })
     }
@@ -90,20 +107,28 @@ export default class Form extends Component {
                 <div className="form">
                     <form onSubmit={this.props.handleSubmit(this.state)}>
                         <div>
+                            <label>Last Name:&nbsp;</label>
+                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.setLastName} required />
+                        </div>
+                        <div>
                             <label>First Name:&nbsp;</label>
                             <input type="text" id="firstName" value={this.state.firstName} onChange={this.setFirstName} required />
                         </div>
                         <div>
-                            <label>Last Name:&nbsp;</label>
-                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.setLastName} required />
+                            <label>Current Educational Institution:&nbsp;</label>
+                            <input type="text" id="currentInstitution" value={this.state.currentInstitution} onChange={this.setCurrentInstitution} required />
                         </div>
                         <div>
                             <label>UBC Student Number:&nbsp;</label>
                             <input type="number" id="id" value={this.state.id} onChange={this.setid} required />
                         </div>
                         <div>
-                            <label>UBC Email Address:&nbsp;</label>
-                            <input type="email" id="ubcemail" value={this.state.ubcemail} onChange={this.setEmail} required />
+                            <label>UBC Alumni Email Address (sign up <a href='https://id.ubc.ca/'>here</a>): &nbsp;</label>
+                            <input type="email" id="ubcemail" value={this.state.UBCEmail} onChange={this.setUBCEmail} required />
+                        </div>
+                        <div>
+                            <label>Verify UBC Alumni Email Address:&nbsp;</label>
+                            <input type="email" id="verifyUBCEmail" value={this.state.verifyUBCEmail} onChange={this.setVerifyUBCEmail} required />
                         </div>
                         <div>
                             <label>Preferred Email Address:&nbsp;</label>
