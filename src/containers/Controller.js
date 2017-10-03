@@ -114,7 +114,7 @@ export default class AppContainer extends Component {
                             }
                         }
                         if (json.type === 'sql-error') { 
-                            alert("Applicantion Error, please contact justin.lee@ubc.ca for assistance");
+                            alert("Applicantion Error, please contact it@landfood.ubc.ca for assistance");
                         }
                     }
                 }
