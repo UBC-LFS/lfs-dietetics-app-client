@@ -102,11 +102,15 @@ export default class Form extends Component {
                             <input type="number" id="id" value={this.state.id} onChange={this.setid} required />
                         </div>
                         <div>
-                            <label>Email Address:&nbsp;</label>
+                            <label>UBC Email Address:&nbsp;</label>
+                            <input type="email" id="ubcemail" value={this.state.ubcemail} onChange={this.setEmail} required />
+                        </div>
+                        <div>
+                            <label>Preferred Email Address:&nbsp;</label>
                             <input type="email" id="email" value={this.state.email} onChange={this.setEmail} required />
                         </div>
                         <div>
-                            <label>Verify Email Address:&nbsp;</label>
+                            <label>Verify Preferred Email Address:&nbsp;</label>
                             <input type="email" id="verifyEmail" value={this.state.verifyEmail} onChange={this.setVerifyEmail} required />
                             <div id='verifyEmail'> </div>
                         </div>
