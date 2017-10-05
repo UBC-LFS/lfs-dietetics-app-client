@@ -123,7 +123,6 @@ export default class AppContainer extends Component {
         xhr.send(FD)
       } else {
         const err = this.errorOutput(state).join(',')
-        console.log(err)
         alert('There is a problem with the following: ' + err)
       }
     }
