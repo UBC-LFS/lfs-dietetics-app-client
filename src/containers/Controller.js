@@ -75,7 +75,7 @@ export default class AppContainer extends Component {
       errorList.push(' EMAIL')
     }
     if (state.verifyUBCEmail.toUpperCase() !== state.UBCEmail.toUpperCase()) {
-      errorList.push(' EMAILS DO NOT MATCH')
+      errorList.push(' UBC EMAILS DO NOT MATCH')
     }
     if (state.email.toUpperCase() !== state.verifyEmail.toUpperCase()) {
       errorList.push(' EMAILS DO NOT MATCH')
