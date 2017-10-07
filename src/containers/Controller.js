@@ -7,7 +7,7 @@ export default class AppContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      filledForm: false,
+      filledForm: true,
       applicationNumber: ''
     }
     this.findApplicant = this.findApplicant.bind(this)
@@ -71,7 +71,7 @@ export default class AppContainer extends Component {
       errorList.push(' PHONE NUMBER (NUMBERS ONLY)')
     }
     if (!this.validateEmail(state.email) || !this.validateEmail(state.verifyEmail) ||
-            !this.validateEmail(state.verifyUBCEmail) || !this.validateEmail(state.UBCEmail)) {
+      !this.validateEmail(state.verifyUBCEmail) || !this.validateEmail(state.UBCEmail)) {
       errorList.push(' EMAIL')
     }
     if (state.verifyUBCEmail.toUpperCase() !== state.UBCEmail.toUpperCase()) {
@@ -87,13 +87,13 @@ export default class AppContainer extends Component {
     return event => {
       event.preventDefault()
       if (this.validateName(state.firstName) && this.validateName(state.lastName) &&
-                this.validateName(state.currentInstitution) &&
-                this.validateNumber(state.id) && this.validateNumber(state.phone) &&
-                this.validateEmail(state.email) && this.validateEmail(state.verifyEmail) &&
-                this.validateEmail(state.UBCEmail) && this.validateEmail(state.verifyUBCEmail) &&
-                state.email.toUpperCase() === state.verifyEmail.toUpperCase() &&
-                state.UBCEmail.toUpperCase() === state.verifyUBCEmail.toUpperCase()
-            ) {
+        this.validateName(state.currentInstitution) &&
+        this.validateNumber(state.id) && this.validateNumber(state.phone) &&
+        this.validateEmail(state.email) && this.validateEmail(state.verifyEmail) &&
+        this.validateEmail(state.UBCEmail) && this.validateEmail(state.verifyUBCEmail) &&
+        state.email.toUpperCase() === state.verifyEmail.toUpperCase() &&
+        state.UBCEmail.toUpperCase() === state.verifyUBCEmail.toUpperCase()
+      ) {
         let FD = new FormData()
         for (let name in state) {
           FD.append(name, state[name])
@@ -135,10 +135,13 @@ export default class AppContainer extends Component {
         <div style={{ textAlign: 'center' }} id='error' />
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
-                ) : (
-                  <Form handleSubmit={this.handleSubmit.bind(this)} />
-                    )
-                }
+        ) : (
+          <Form handleSubmit={this.handleSubmit.bind(this)} />
+          )
+        }
+        <div>
+          <a href='https://secure.landfood.ubc.ca/Shibboleth.sso/Logout?return=http://dietetics.landfood.ubc.ca' >CWL LOGOUT</a>
+        </div>
       </div>
     )
   }
