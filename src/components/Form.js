@@ -123,7 +123,7 @@ export default class Form extends Component {
               <input type='number' id='id' value={this.state.id} onChange={this.setid} required />
             </div>
             <div>
-              <label>UBC Alumni Email Address (sign up <a href='https://id.ubc.ca/' target='_blank'>here</a>): &nbsp;</label>
+              <label>UBC Alumni Email Address (sign up <a href='https://id.ubc.ca/' target='_blank' rel='noopener noreferrer' >here</a>): &nbsp;</label>
               <input type='email' id='ubcemail' value={this.state.UBCEmail} onChange={this.setUBCEmail} required />
             </div>
             <div>
@@ -159,7 +159,7 @@ export default class Form extends Component {
             <div>
               <p><b>Note:</b> Students are only permitted to apply to the program two times, unless written permission is given via
                                 the 2018 Dietetics Admissions Special Permission Form (due <b>November 15, 2017</b>). If permission to re-apply has
-                                been granted, please include a copy of the signed form with your application).</p>
+                                been granted, please include a copy of the signed form with your application package.</p>
             </div>
             <div className='box'>
               <p><b>Aboriginal Student Self-Identification - Optional Question</b> </p>
