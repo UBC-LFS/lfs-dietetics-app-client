@@ -144,7 +144,7 @@ export default class Form extends Component {
               <input type='number' id='phone' value={this.state.phone} onChange={this.setPhone} placeholder='' required />
             </div>
             <div>
-              <label>Birthday:&nbsp;</label>
+              <label>Birthday (yyyy-mm-dd) :&nbsp;</label>
               <input type='date' id='birthday' value={this.state.birthday} onChange={this.setBirthday} required />
             </div>
             <div>

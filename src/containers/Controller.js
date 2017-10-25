@@ -14,6 +14,7 @@ export default class AppContainer extends Component {
     this.validateName = this.validateName.bind(this)
     this.validateNumber = this.validateNumber.bind(this)
     this.validateEmail = this.validateEmail.bind(this)
+    this.validateDate = this.validateDate.bind(this)
     this.errorOutput = this.errorOutput.bind(this)
   }
 
@@ -53,6 +54,14 @@ export default class AppContainer extends Component {
     return verify.test(email)
   }
 
+  validateDate (date) {
+    const regEx = /^\d{4}-\d{2}-\d{2}$/;
+    if(!date.match(regEx)) return false;
+    const d = new Date(date);
+    if(!d.getTime()) return false;
+    return d.toISOString().slice(0,10) === date;
+  }
+
   errorOutput (state) {
     const errorList = []
     if (!this.validateName(state.firstName)) {
@@ -80,6 +89,9 @@ export default class AppContainer extends Component {
     if (state.email.toUpperCase() !== state.verifyEmail.toUpperCase()) {
       errorList.push(' EMAILS DO NOT MATCH')
     }
+    if (!this.validateDate(state.birthday)) {
+      errorList.push(' BIRTHDAY SHOULD BE IN THE FOLLOWING FORMAT YYYY-MM-DD')
+    }
     return errorList
   }
 
@@ -92,7 +104,7 @@ export default class AppContainer extends Component {
         this.validateEmail(state.email) && this.validateEmail(state.verifyEmail) &&
         this.validateEmail(state.UBCEmail) && this.validateEmail(state.verifyUBCEmail) &&
         state.email.toUpperCase() === state.verifyEmail.toUpperCase() &&
-        state.UBCEmail.toUpperCase() === state.verifyUBCEmail.toUpperCase()
+        state.UBCEmail.toUpperCase() === state.verifyUBCEmail.toUpperCase() && this.validateDate(state.birthday)
       ) {
         let FD = new FormData()
         for (let name in state) {
