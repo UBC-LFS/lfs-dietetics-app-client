@@ -121,9 +121,9 @@ export default class AppContainer extends Component {
             const json = JSON.parse(xhr.response)
             if (json.type === 'error') {
               if (typeof json.msg.code !== 'undefined') {
-                alert('Error! File size limit is 10MB. Please upload a smaller file.')
+                alert('Error! Please check your inputs. As a note, file size limit is 10MB. Please upload a smaller file.')
               } else {
-                alert('Error! Only the following file types are accepted: PDF, DOC, DOCX, JPEG')
+                alert('Error! Please check your inputs. As a note, only the following file types are accepted: PDF, DOC, DOCX, JPEG')
               }
             }
             if (json.type === 'sql-error') {
