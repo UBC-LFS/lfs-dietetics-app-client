@@ -5,14 +5,26 @@
   "homepage": "https://secure.landfood.ubc.ca/dietetics",
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.1.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf ../lfs-dietetics-app-server/public/build && react-scripts build && mv build ../lfs-dietetics-app-server/public",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
