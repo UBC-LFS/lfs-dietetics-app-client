@@ -143,7 +143,7 @@ export default class AppContainer extends Component {
   render () {
     return (
       <div className='app-container'>
-        <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2018 </h1>
+        <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2022 </h1>
         <div style={{ textAlign: 'center' }} id='error' />
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
@@ -153,7 +153,7 @@ export default class AppContainer extends Component {
         }
         <div className='footer'>
           <p>For assistance contact <a href='mailto:it@landfood.ubc.ca' target='_top'>it@landfood.ubc.ca</a></p>
-          <a href='https://secure.landfood.ubc.ca/Shibboleth.sso/Logout?return=http://dietetics.landfood.ubc.ca' >CWL LOGOUT</a>
+          <a href='https://secure.landfood.ubc.ca/Shibboleth.sso/Logout?return=http://dietpin.landfood.ubc.ca' >CWL LOGOUT</a>
         </div>
       </div>
     )
