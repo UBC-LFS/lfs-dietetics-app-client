@@ -123,7 +123,7 @@ export default class Form extends Component {
               <input type='number' id='id' value={this.state.id} onChange={this.setid} required />
             </div>
             <div>
-              <label>UBC Alumni Email Address (sign up <a href='https://id.ubc.ca/' target='_blank' rel='noopener noreferrer' >here</a>): &nbsp;</label>
+              <label>UBC Student Email Address (sign up <a href='https://myaccount.ubc.ca/' target='_blank' rel='noopener noreferrer' >here</a>): &nbsp;</label>
               <input type='email' id='ubcemail' value={this.state.UBCEmail} onChange={this.setUBCEmail} required />
             </div>
             <div>
@@ -149,27 +149,32 @@ export default class Form extends Component {
             </div>
             <div>
               <label>Is this your first application to the UBC Dietetics Major?:</label>
-              <fieldset id='NumOfApps'>
-                <label><input type='radio' name='appNum' value='yes' checked={this.state.numOfApp === 'yes'} onChange={this.setNumOfApp} required /> &nbsp; Yes &nbsp;&nbsp;</label>
-                <label><input type='radio' name='appNum' value='no' checked={this.state.numOfApp === 'no'} onChange={this.setNumOfApp} /> &nbsp; No, second &nbsp;&nbsp;</label>
-                <label><input type='radio' name='appNum' value='other' checked={this.state.numOfApp === 'other'} onChange={this.setNumOfApp} /> &nbsp; Other (special permission is required) &nbsp;&nbsp;</label>
+              <fieldset id='firstApps'>
+                <label><input type='radio' name='firstAppNum' value='yes' checked={this.state.firstApp === 'yes'} onChange={this.firstApp} required /> &nbsp; Yes &nbsp;&nbsp;</label>
+                <label><input type='radio' name='firstAppNum' value='no' checked={this.state.firstApp === 'no'} onChange={this.firstApp} /> &nbsp; No, second &nbsp;&nbsp;</label>
               </fieldset>
               <br />
             </div>
             <div>
-              <p><b>Note:</b> Students are only permitted to apply to the program two times, unless written permission is given via
-                                the 2018 Dietetics Admissions Special Permission Form (due <b>November 15, 2017</b>). If permission to re-apply has
-                                been granted, please include a copy of the signed form with your application package.</p>
+              <label>If this is not your first time applying to the program, how many times have you applied in the past?&nbsp;</label>
+              <select name='prevApp' onChange={this.setNumOfApp}>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5+</option>
+              </select>
             </div>
             <div className='box'>
               <p><b>Aboriginal Student Self-Identification - Optional Question</b> </p>
               <p> UBC is dedicated to supporting Aboriginal student success. The university has developed a wide variety of programs
-                                    and student services for Aboriginal students, including academic programs, admission policies, housing and financial
-                                    awards. <b>Self-identification is optional</b>. If you are an Aboriginal person, we encourage you to self-identify
-                                    so that you may benefit from these programs and services. </p>
+                  and student services for Aboriginal students, including academic programs, admission policies, housing and financial
+                  awards. <b>Self-identification is optional</b>. If you are an Aboriginal person, we encourage you to self-identify
+                  so that you may benefit from these programs and services. </p>
               <p> We use the term "Aboriginal" in the spirit of its use in section 35(2) of the Canadian Constitution, to refer inclusively to members of First Nations,
-                                    status and non-status, treaty and non-treaty Indians, Métis, and Inuit peoples in Canada, recognizing in doing so that many people may perfer
-                                    the terms that are specific and traditional to their communities. </p>
+                  status and non-status, treaty and non-treaty Indians, Métis, and Inuit peoples in Canada, recognizing in doing so that many people may perfer
+                  the terms that are specific and traditional to their communities. </p>
               <p><b> Aboriginal Self-Identification Questions (Optional):</b> </p>
               <div>
                 <label>Do you identify yourself as an Aboriginal person of Canada?</label>
