@@ -127,7 +127,7 @@ export default class Form extends Component {
               <input type='email' id='ubcemail' value={this.state.UBCEmail} onChange={this.setUBCEmail} required />
             </div>
             <div>
-              <label>Verify UBC Alumni Email Address:&nbsp;</label>
+              <label>Verify UBC Student Email Address:&nbsp;</label>
               <input type='email' id='verifyUBCEmail' value={this.state.verifyUBCEmail} onChange={this.setVerifyUBCEmail} required />
             </div>
             <div>
