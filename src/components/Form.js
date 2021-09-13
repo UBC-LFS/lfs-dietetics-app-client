@@ -150,8 +150,8 @@ export default class Form extends Component {
             <div>
               <label>Is this your first application to the UBC Dietetics Major?:</label>
               <fieldset id='firstApp'>
-                <label><input type='radio' name='firstAppNum' value='yes' checked={this.state.firstApp === 'yes'} required /> &nbsp; Yes &nbsp;&nbsp;</label>
-                <label><input type='radio' name='firstAppNum' value='no' checked={this.state.firstApp === 'no'} /> &nbsp; No &nbsp;&nbsp;</label>
+                <label><input type='radio' name='firstAppNum' value='yes' checked={this.state.firstApp === 'yes'} onChange={this.setfirstApp} required /> &nbsp; Yes &nbsp;&nbsp;</label>
+                <label><input type='radio' name='firstAppNum' value='no' checked={this.state.firstApp === 'no'} onChange={this.setfirstApp} /> &nbsp; No &nbsp;&nbsp;</label>
               </fieldset>
               <br />
             </div>
