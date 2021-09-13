@@ -14,6 +14,7 @@ export default class Form extends Component {
       verifyUBCEmail: '',
       phone: '',
       birthday: '',
+      firstApp: '',
       numOfApp: '',
       aboriginal: '',
       aborId: '',
@@ -30,6 +31,7 @@ export default class Form extends Component {
     this.setVerifyEmail = this.setVerifyEmail.bind(this)
     this.setPhone = this.setPhone.bind(this)
     this.setBirthday = this.setBirthday.bind(this)
+    this.setFirstApp = this.setFirstApp.bind(this)
     this.setNumOfApp = this.setNumOfApp.bind(this)
     this.setAboriginal = this.setAboriginal.bind(this)
     this.setAborId = this.setAborId.bind(this)
@@ -78,6 +80,10 @@ export default class Form extends Component {
 
   setBirthday (event) {
     this.setState({ birthday: event.target.value })
+  }
+
+  setFirstApp (event) {
+    this.setState({ firstApp: event.target.value })
   }
 
   setNumOfApp (event) {
