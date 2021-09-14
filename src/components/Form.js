@@ -163,7 +163,7 @@ export default class Form extends Component {
             </div>
             <div>
               <label>If this is not your first time applying to the program, how many times have you applied in the past?&nbsp;</label>
-              <select name='prevApp' onChange={this.setNumOfApp}>
+              <select name='numOfApp' onChange={this.setNumOfApp}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
