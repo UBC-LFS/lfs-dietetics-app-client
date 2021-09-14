@@ -2,7 +2,7 @@
   "name": "lfs-dietetics-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://secure.landfood.ubc.ca/dietetics",
+  "homepage": "https://dietpin.landfood.ubc.ca/dietetics",
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
