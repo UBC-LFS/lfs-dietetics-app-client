@@ -129,7 +129,7 @@ export default class Form extends Component {
               <input type='number' id='id' value={this.state.id} onChange={this.setid} required />
             </div>
             <div>
-              <label>UBC Student Email Address (sign up <a href='https://myaccount.ubc.ca/' target='_blank' rel='noopener noreferrer' >here</a>): &nbsp;</label>
+              <label>UBC Student Email Address (sign up <a href='https://myaccount.ubc.ca/myAccount/' target='_blank' rel='noopener noreferrer' >here</a>): &nbsp;</label>
               <input type='email' id='ubcemail' value={this.state.UBCEmail} onChange={this.setUBCEmail} required />
             </div>
             <div>
