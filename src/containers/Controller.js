@@ -1,7 +1,9 @@
 /* global XMLHttpRequest, FormData, alert */
 import React, { Component } from 'react'
 import AppNumber from '../components/AppNumber'
+/*
 import Form from '../components/Form'
+*/
 
 export default class AppContainer extends Component {
   constructor (props) {
@@ -148,10 +150,10 @@ export default class AppContainer extends Component {
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
         ) : (
-        /*
          <p>Application is now closed. </p>
-        */
+         /*
           <Form handleSubmit={this.handleSubmit.bind(this)} />
+          */
           )
         }
         <div className='footer'>
