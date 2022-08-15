@@ -1,9 +1,7 @@
 /* global XMLHttpRequest, FormData, alert */
 import React, { Component } from 'react'
 import AppNumber from '../components/AppNumber'
-/*
 import Form from '../components/Form'
-*/
 
 export default class AppContainer extends Component {
   constructor (props) {
@@ -145,15 +143,16 @@ export default class AppContainer extends Component {
   render () {
     return (
       <div className='app-container'>
-        <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2022 </h1>
+        <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2023 </h1>
         <div style={{ textAlign: 'center' }} id='error' />
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
         ) : (
+         /* 
          <p>Application is now closed. </p>
-         /*
+         */
           <Form handleSubmit={this.handleSubmit.bind(this)} />
-          */
+        
           )
         }
         <div className='footer'>
