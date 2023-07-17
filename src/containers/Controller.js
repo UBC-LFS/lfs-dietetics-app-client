@@ -1,9 +1,10 @@
 /* global XMLHttpRequest, FormData, alert */
 import React, { Component } from 'react'
 import AppNumber from '../components/AppNumber'
-/*
+
 import Form from '../components/Form'
- */
+ 
+
 export default class AppContainer extends Component {
   constructor (props) {
     super(props)
@@ -24,7 +25,7 @@ export default class AppContainer extends Component {
   }
 
   findApplicant () {
-    const xhr = new XMLHttpRequest()
+    const xhr = new XMLHttpRequest("http://localhost:8080/")
     xhr.onload = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const json = JSON.parse(xhr.response)
@@ -111,9 +112,11 @@ export default class AppContainer extends Component {
         for (let name in state) {
           FD.append(name, state[name])
         }
-        const xhr = new XMLHttpRequest()
+        const xhr = new XMLHttpRequest("http://localhost:8080")
+        console.log(xhr)
         xhr.onload = () => {
           if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.response)
             const json = JSON.parse(xhr.response)
             if (json.type === 'render') {
               this.findApplicant()
@@ -149,10 +152,10 @@ export default class AppContainer extends Component {
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
         ) : (
-         <p>Application is now closed. </p>
-/*
+        //  <p>Application is now closed. </p>
+
           <Form handleSubmit={this.handleSubmit.bind(this)} />
- */       
+     
           )
         }
         <div className='footer'>
