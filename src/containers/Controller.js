@@ -152,16 +152,10 @@ export default class AppContainer extends Component {
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
         ) : (
-<<<<<<< HEAD
 /*
          <p>Application is now closed. </p>
 */
           <Form handleSubmit={this.handleSubmit.bind(this)} />      
-=======
-          <p>Application is now closed. </p>
-          /*<Form handleSubmit={this.handleSubmit.bind(this)} />*/
-        
->>>>>>> 7c73b5dfac878a43cf9484ddbf71025146b287d3
           )
         }
         <div className='footer'>
