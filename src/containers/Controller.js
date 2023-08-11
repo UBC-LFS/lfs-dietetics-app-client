@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import AppNumber from '../components/AppNumber'
 
-/* import Form from '../components/Form' */
+import Form from '../components/Form'
  
 
 export default class AppContainer extends Component {
