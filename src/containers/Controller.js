@@ -2,8 +2,9 @@
 import React, { Component } from 'react'
 import AppNumber from '../components/AppNumber'
 
+/* Application closed for 2024
 import Form from '../components/Form'
- 
+*/
 
 export default class AppContainer extends Component {
   constructor (props) {
@@ -152,10 +153,11 @@ export default class AppContainer extends Component {
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
         ) : (
-/*
+
          <p>Application is now closed. </p>
+/* Closed for 2024
+          <Form handleSubmit={this.handleSubmit.bind(this)} />
 */
-          <Form handleSubmit={this.handleSubmit.bind(this)} />      
           )
         }
         <div className='footer'>
