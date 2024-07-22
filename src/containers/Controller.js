@@ -26,7 +26,7 @@ export default class AppContainer extends Component {
   }
 
   findApplicant () {
-    const xhr = new XMLHttpRequest("http://localhost:8080/")
+    const xhr = new XMLHttpRequest("http://localhost:10080/")
     xhr.onload = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const json = JSON.parse(xhr.response)
@@ -113,7 +113,7 @@ export default class AppContainer extends Component {
         for (let name in state) {
           FD.append(name, state[name])
         }
-        const xhr = new XMLHttpRequest("http://localhost:8080")
+        const xhr = new XMLHttpRequest("http://localhost:10080")
         console.log(xhr)
         xhr.onload = () => {
           if (xhr.readyState === 4 && xhr.status === 200) {
@@ -148,7 +148,7 @@ export default class AppContainer extends Component {
   render () {
     return (
       <div className='app-container'>
-        <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2024 </h1>
+        <h1 style={{ textAlign: 'center' }}> Dietetics Major Application Form 2025 </h1>
         <div style={{ textAlign: 'center' }} id='error' />
         {this.state.filledForm === true ? (
           <AppNumber applicationNumber={this.state.applicationNumber} />
