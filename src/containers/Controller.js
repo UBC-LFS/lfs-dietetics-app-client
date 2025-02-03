@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import AppNumber from '../components/AppNumber'
 
-/* Application closed for 2024 */
-import Form from '../components/Form'
+/* Application closed for 2025 */
+// import Form from '../components/Form'
 
 
 export default class AppContainer extends Component {
@@ -154,10 +154,10 @@ export default class AppContainer extends Component {
           <AppNumber applicationNumber={this.state.applicationNumber} />
         ) : (
 
-/*
+
          <p>Application is now closed. </p>
-           Closed for 2024 */
-          <Form handleSubmit={this.handleSubmit.bind(this)} />
+        //   Closed for 2025 
+        //  <Form handleSubmit={this.handleSubmit.bind(this)} />
 
           )
         }
